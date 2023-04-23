@@ -2,11 +2,13 @@
 
 #include <GL/glut.h>
 #include <GL\freeglut.h>
+#include <glm/glm.hpp>
+
 #include "Formas.h"
 
 Player::Player() {
-    posicao[2] = (0.25, 2);
-    cor[3] = (1, 0, 0);
+    posicao = glm::vec2(0.25, 2);
+    cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
     velocidade = 0.2;
 }

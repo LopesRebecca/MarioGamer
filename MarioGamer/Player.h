@@ -1,12 +1,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-//#include <glm/glm.hpp>
+#include <glm/glm.hpp>
 
 class Player {
 private:
-    float posicao[2];
-    float cor[3];
+    glm::vec2 posicao;
+    glm::vec3 cor;
     float     tamanho;
     float     velocidade;
 public:
