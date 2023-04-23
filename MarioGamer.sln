@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MarioGamer", "MarioGamer\MarioGamer.vcxproj", "{F30F5901-75E8-44FE-9E2D-4E5B21278698}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Debug|x64.ActiveCfg = Debug|Win32
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Debug|x64.Build.0 = Debug|Win32
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Debug|x86.ActiveCfg = Debug|Win32
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Debug|x86.Build.0 = Debug|Win32
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Release|x64.ActiveCfg = Release|x64
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Release|x64.Build.0 = Release|x64
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Release|x86.ActiveCfg = Release|Win32
+		{F30F5901-75E8-44FE-9E2D-4E5B21278698}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F575C700-CF2D-4D9A-A827-2A7F8899CE93}
+	EndGlobalSection
+EndGlobal
