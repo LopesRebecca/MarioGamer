@@ -2,7 +2,7 @@
 
 #include <GL/glut.h>
 #include <GL\freeglut.h>
-#include <glm/glm.hpp>
+#include <glm.hpp>
 
 #include "Formas.h"
 
@@ -14,12 +14,12 @@ Player::Player() {
 }
 
 void Player::flap() {
-    velocidade = -3; //impulso pra cima é colocar velocidade pra cima (não é fisicamente realista, mas cumpre o papel)
+    velocidade = -3; 
 }
 
 void Player::cair(float tempo) {
     float gravidade = 10;
-    velocidade = velocidade + gravidade * tempo; //movimento uniformemente variado (modifica velocidade e posição)
+    velocidade = velocidade + gravidade * tempo;
     posicao[0] = posicao[0] - velocidade * tempo;
 }
 
@@ -29,7 +29,7 @@ void Player::desenha() {
     glTranslatef(0.25, 2, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(cor[0], cor[1], cor[2]);
-    Formas::circulo(36); //função da classe Formas que desenha um círculo (polígono de 36 lados)
+    Formas::circulo(36); 
 
     glPopMatrix();
 }

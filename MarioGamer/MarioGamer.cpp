@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "Player.h"
+#include "Plataforma.h"
 
 
 using namespace std;
@@ -23,6 +24,7 @@ float frameRate = 30;
 
 //Um personagem  e três obstáculos em ciclo (pipes)
 Player player;
+Plataforma plataforma(7);
 
 
 //Função com configurações iniciais da aplicação
@@ -59,8 +61,7 @@ void desenha() {
 
     //desenha personagem e obstáculos
     player.desenha();
-
-
+  
     glutSwapBuffers();
 }
 
@@ -69,7 +70,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(640, 360);
-    glutCreateWindow("Transformacoes Geometricas 2D - OpenGL Classico");
+    glutCreateWindow("Mario Game - Computação Grafica");
 
     inicio();
 

@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <glm/glm.hpp>
+#include <glm.hpp>
 
 class Player {
 private:
@@ -11,9 +11,9 @@ private:
     float     velocidade;
 public:
     Player();
-    void flap();            //função que dá impulso para cima ao bird
-    void cair(float tempo); //função que abaixo o bird sob ação da gravidade
-    void desenha();         //função que desenha o bird na tela
+    void flap();            
+    void cair(float tempo); 
+    void desenha();        
 };
 
 #endif 

@@ -76,12 +76,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\menin\OneDrive\Área de Trabalho\open_gl\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\freeglut\include;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\menin\OneDrive\Área de Trabalho\open_gl\freeglut\lib;C:\Users\paula\Downloads\Glew and Glut\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\paula\Downloads\Glew and Glut\freeglut\lib;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\freeglut\lib;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\glm;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -132,10 +132,12 @@
   <ItemGroup>
     <ClCompile Include="Formas.cpp" />
     <ClCompile Include="MarioGamer.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Formas.h" />
+    <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
