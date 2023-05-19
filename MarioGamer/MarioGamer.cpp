@@ -14,27 +14,26 @@
 
 using namespace std;
 
-/*
- * Programa que simula uma parte do jogo Flappy Bird
- * O personagem (círculo) sofre influência da gravidade e se mantem no ar ao pressionar espaço ou a tecla 'a'
- */
-
- //Variáveis globais
 float frameRate = 30;
 
-//Um personagem  e três obstáculos em ciclo (pipes)
 Player player;
-Plataforma plataforma(7);
+Plataforma flow(0);
+Plataforma pipe1(7);
+Plataforma pipe2(9);
+Plataforma pipe3(11);
+std::vector<Plataforma> pipes;
 
 
-//Função com configurações iniciais da aplicação
+
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
-
+    pipes.push_back(pipe1);
+    pipes.push_back(pipe2);
+    pipes.push_back(pipe3);
 }
 
 void teclado(unsigned char tecla, int x, int y) {
-    if (tecla == 'w')
+    if (tecla == 'd')
         player.flap(); //a cada pressionar da tecla, o bird recebe velocidade pra cima
 }
 
@@ -47,20 +46,19 @@ void timer(int v) {
     glutPostRedisplay();
 }
 
-//Função indicada na 'main' que será usada para redesenhar o conteúdo do frame buffer
+
 void desenha() {
     glClear(GL_COLOR_BUFFER_BIT);
-
-    //definição da área do sistema de coordenadas do mundo que será usado no jogo
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0, 6, 0, 4, -1, 1);
+    glOrtho(0, 6, 0, 6, -1, 1);
 
-    glMatrixMode(GL_MODELVIEW); //habilita o uso de matrizes de transformações geométricas
-    glLoadIdentity();           //inicializa a matriz de trasnformação com a matriz identidade (não altera as coordenadas dos pontos)
+    glMatrixMode(GL_MODELVIEW); 
+    glLoadIdentity();           
 
-    //desenha personagem e obstáculos
+    for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
     player.desenha();
+    flow.flow();
   
     glutSwapBuffers();
 }

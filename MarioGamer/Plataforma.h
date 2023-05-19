@@ -2,22 +2,20 @@
 
 #ifndef PLATAFORMA_H
 #define PLATAFORMA_H
-
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 class Plataforma
 {
 private:
 	glm::vec2 posicao;
-	glm::vec2 cor;
+	glm::vec3 cor;
 	float largura;
-	float velocidade;
 public:
-	Plataforma(float x);
+	Plataforma(float y);
 	bool isOut();
-	void move(float tempo);
 	void respawn();
 	void desenha();
+	void flow();
 };
 
 #endif

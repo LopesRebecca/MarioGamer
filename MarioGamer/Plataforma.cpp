@@ -5,41 +5,43 @@
 #include <iostream>
 #include <GL/glut.h>
 #include <GL\freeglut.h>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 
-Plataforma::Plataforma(float x) {
-    posicao = glm::vec2(x, 1 + rand() % 3);
-    velocidade = 1;
+Plataforma::Plataforma(float y) {
+    posicao = glm::vec2(1 + rand() % 3, y);
+    cor = glm::vec3(1, 2, 1);
     largura = 0.25;
 }
 
 bool Plataforma::isOut() {
-    return posicao.x < 0 - largura;
-}
-
-void Plataforma::move(float tempo) {
-    posicao.x = posicao.x - velocidade * tempo; //movimentação uniforme constante (modifica apenas posição)
+    return posicao.y < 0 - largura;
 }
 
 void Plataforma::respawn() {
-    posicao.x = 6 + largura;
-    posicao.y = 1 + rand() % 3;
+    posicao.x = 2 + rand() % 3;
+    posicao.y = 1 + largura;
 }
 
 void Plataforma::desenha() {
-    //O pipe é um par de obstáculo (superior e inferior)
-    //obstáculo inferior
+    //obstaculo direito
     glPushMatrix();
-    glTranslatef(posicao.x, (posicao.y - 0.5) / 2.0, 0);
-    glScalef(largura, (posicao.y - 0.5) / 2.0, 1);
+    glTranslatef((posicao.x - 0.5) / 2.0, posicao.y, 0);
+    glScalef((3.5 - posicao.y) / 2.0, largura, 1);
     Formas::quadrado();
     glPopMatrix();
 
-    //obstaculo superior
+    //obstaculo esquerdo
     glPushMatrix();
-    glTranslatef(posicao.x, (posicao.y + 4.5) / 2.0, 0);
-    glScalef(largura, (3.5 - posicao.y) / 2.0, 1);
+    glTranslatef((posicao.y + 4.5) / 2.0, posicao.x, 0);
+    glScalef((3.5 - posicao.y) / 2.0, largura, 1);
+    Formas::quadrado();
+    glPopMatrix();
+}
+
+void Plataforma::flow() {
+    glPushMatrix();
+    glScalef(6, 0.4, 1);
     Formas::quadrado();
     glPopMatrix();
 }

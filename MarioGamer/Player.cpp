@@ -2,7 +2,7 @@
 
 #include <GL/glut.h>
 #include <GL\freeglut.h>
-#include <glm.hpp>
+#include<glm/glm.hpp>
 
 #include "Formas.h"
 
@@ -26,10 +26,10 @@ void Player::cair(float tempo) {
 void Player::desenha() {
     glPushMatrix();
 
-    glTranslatef(0.25, 2, 0);
+    glTranslatef(0, 0.5, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(cor[0], cor[1], cor[2]);
-    Formas::circulo(36); 
+    Formas::quadrado(); 
 
     glPopMatrix();
 }
