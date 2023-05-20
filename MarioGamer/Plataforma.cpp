@@ -33,7 +33,7 @@ void Plataforma::desenha() {
 
     //obstaculo esquerdo
     glPushMatrix();
-    glTranslatef((posicao.y + 4.5) / 2.0, posicao.x, 0);
+    glTranslatef(posicao.x, (posicao.y - 4.5) / 2.0, 0);
     glScalef((3.5 - posicao.y) / 2.0, largura, 1);
     Formas::quadrado();
     glPopMatrix();

@@ -54,11 +54,12 @@ void desenha() {
     glOrtho(0, 6, 0, 6, -1, 1);
 
     glMatrixMode(GL_MODELVIEW); 
-    glLoadIdentity();           
+    glLoadIdentity();
+
+    player.desenha();
 
     for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
-    player.desenha();
-    flow.flow();
+        flow.flow();
   
     glutSwapBuffers();
 }

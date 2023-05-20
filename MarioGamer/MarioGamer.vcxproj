@@ -76,12 +76,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\REBECCA\source\repos\MarioGamer\MarioGamer\include\freeglut\include;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\freeglut\include;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\REBECCA\source\repos\MarioGamer\MarioGamer\include\freeglut\include;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\freeglut\include;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\glm;C:\Users\paula\source\repos\MarioGamer\MarioGamer\include\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\REBECCA\source\repos\MarioGamer\MarioGamer\include\freeglut\lib;C:\Users\paula\Downloads\Glew and Glut\freeglut\lib;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\freeglut\lib;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\glm;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\REBECCA\source\repos\MarioGamer\MarioGamer\include\freeglut\lib;C:\Users\paula\Downloads\Glew and Glut\freeglut\lib;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\freeglut\lib;C:\Users\menin\source\repos\MarioGamer\MarioGamer\include\glm;C:\Users\paula\Downloads\glm-master\glm-master\glm;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
