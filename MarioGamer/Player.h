@@ -4,16 +4,20 @@
 #include <glm/glm.hpp>
 
 class Player {
-private:
+public:
     glm::vec2 posicao;
     glm::vec3 cor;
-    float     tamanho;
+    float tamanho;
+    float     width;
+    float height;
     float     velocidade;
+    bool direita;
+    bool esquerda;
 public:
     Player();
     void flap();            
     void cair(float tempo); 
-    void mover(float velocidade);
+    void mover(int tecla);
     void desenha();        
 };
 

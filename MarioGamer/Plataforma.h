@@ -6,7 +6,7 @@
 
 class Plataforma
 {
-private:
+public:
 	glm::vec2 posicao;
 	glm::vec3 cor;
 	float largura;

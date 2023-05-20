@@ -15,6 +15,8 @@
 using namespace std;
 
 float frameRate = 30;
+bool isColiding = false;
+float move = 0.4;
 
 Player player;
 Plataforma flow(0);
@@ -32,20 +34,30 @@ void inicio() {
     pipes.push_back(pipe3);
 }
 
+void tecladoEspecial(int tecla, int x, int y) {
+    
+    player.mover(tecla);
+       
+}
+
 void teclado(unsigned char tecla, int x, int y) {
-    if (tecla == 'd')
-        player.mover(0.2); //a cada pressionar da tecla, o bird recebe velocidade pra cima
+    if (tecla == ' ')
+        player.flap(); //a cada pressionar da tecla, o bird recebe velocidade pra cima
 }
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
 void timer(int v) {
     glutTimerFunc(1000.0 / frameRate, timer, 0); //Controlando o desenho a cada 1000/30 significa que a tela será redesenhada 30 frames por segundo
+    
+    player.cair(1.0 / frameRate); //a cada frame, o bird cai sob ação da gravidade   
 
-   // player.cair(1.0 / frameRate); //a cada frame, o bird cai sob ação da gravidade
-
-    player.mover(0.2);
+    
 
     glutPostRedisplay();
+}
+
+void colisao() {
+   
 }
 
 
@@ -53,7 +65,7 @@ void desenha() {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0, 6, 0, 6, -1, 1);
+    glOrtho(0, 6, 0, 4, -1, 1);
 
     glMatrixMode(GL_MODELVIEW); 
     glLoadIdentity();
@@ -61,7 +73,6 @@ void desenha() {
     player.desenha();
 
     for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
-    
     
     flow.flow();
   
@@ -79,6 +90,7 @@ int main(int argc, char** argv) {
 
     glutDisplayFunc(desenha);
     glutKeyboardFunc(teclado);
+    glutSpecialFunc(tecladoEspecial);
     glutTimerFunc(1000.0 / 30, timer, 0);
 
     glutMainLoop();

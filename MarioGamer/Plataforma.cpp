@@ -10,12 +10,12 @@
 
 Plataforma::Plataforma(float y) {
     posicao = glm::vec2(1 + rand() % 3, y);
-    cor = glm::vec3(1, 2, 1);
+    cor = glm::vec3(1,0.46, 0.09);
     largura = 0.25;
 }
 
 bool Plataforma::isOut() {
-    return posicao.y < 0 - largura;
+    return posicao.x < 0 - largura;
 }
 
 void Plataforma::respawn() {
@@ -28,7 +28,7 @@ void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef((posicao.x - 0.5) / 2.0, posicao.y, 0);
     glScalef((3.5 - posicao.y) / 2.0, largura, 1);
-    glColor3f(cor[0], cor[1], cor[2]);
+    glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
 
@@ -36,7 +36,7 @@ void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef(posicao.x, (posicao.y - 4.5) / 2.0, 0);
     glScalef((3.5 - posicao.y) / 2.0, largura, 1);
-    glColor3f(cor[0], cor[1], cor[2]);
+    glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
 }
@@ -44,6 +44,7 @@ void Plataforma::desenha() {
 void Plataforma::flow() {
     glPushMatrix();
     glScalef(6, 0.4, 1);
+    glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
 }

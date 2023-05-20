@@ -5,36 +5,60 @@
 #include<glm/glm.hpp>
 
 #include "Formas.h"
+#include "Plataforma.h"
 
 Player::Player() {
-    posicao = glm::vec2(0.5, 2);
+    posicao = glm::vec2(0.25, 2);
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
-    velocidade = 0.2;
+    width = 0.2;
+    height = 0.6;
+    velocidade = 0;
+    direita;
+    esquerda;
 }
 
+
+
 void Player::flap() {
-    velocidade = -3; 
+    velocidade = -4; 
+}
+
+void Player::mover(int tecla) {
+
+    switch (tecla) {                                  //os códigos das teclas especiais são valores inteiros, então podem ser usados no switch
+        case GLUT_KEY_LEFT:  posicao.x -= 0.1; break; //caso a seta esquerda seja pressionada, a coordenada x do ponto inferior esquerdo é reduzida, deslocando o quadrado pra esquerda
+        case GLUT_KEY_RIGHT: posicao.x += 0.1; break; //caso a seta direita seja pressionada, a coordenada x do ponto inferior esquerdo é aumentada, deslocando o quadrado pra direita
+    }
+    glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
+
+
+    if (posicao.x < width) // colisao pra nao sair da tela pela direita
+        posicao.x = width;
+
+    if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
+        posicao.x = 6 - width;
+
 }
 
 void Player::cair(float tempo) {
     float gravidade = 10;
     velocidade = velocidade + gravidade * tempo;
-    posicao[0] = posicao[0] - velocidade * tempo;
+    posicao.y = posicao.y - velocidade * tempo;
+
+    if (posicao.y < height) // colisao com o chao
+        posicao.y = height;
+
 }
 
-void Player::mover(float velocidade) {
-    
-    posicao[0] = posicao[0] + velocidade;
-}
 
 void Player::desenha() {
     glPushMatrix();
 
-    glTranslatef(0, 3.5, 0);
+    glTranslatef(posicao.x, posicao.y, 0);
     glScalef(tamanho, tamanho, 1);
-    glColor3f(cor[0], cor[1], cor[2]);
-    Formas::quadrado(); 
+    glColor3f(cor.r, cor.g, cor.b);
+    Formas::circulo(36); 
 
     glPopMatrix();
 }
