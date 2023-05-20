@@ -28,6 +28,7 @@ void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef((posicao.x - 0.5) / 2.0, posicao.y, 0);
     glScalef((3.5 - posicao.y) / 2.0, largura, 1);
+    glColor3f(cor[0], cor[1], cor[2]);
     Formas::quadrado();
     glPopMatrix();
 
@@ -35,6 +36,7 @@ void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef(posicao.x, (posicao.y - 4.5) / 2.0, 0);
     glScalef((3.5 - posicao.y) / 2.0, largura, 1);
+    glColor3f(cor[0], cor[1], cor[2]);
     Formas::quadrado();
     glPopMatrix();
 }

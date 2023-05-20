@@ -34,14 +34,16 @@ void inicio() {
 
 void teclado(unsigned char tecla, int x, int y) {
     if (tecla == 'd')
-        player.flap(); //a cada pressionar da tecla, o bird recebe velocidade pra cima
+        player.mover(0.2); //a cada pressionar da tecla, o bird recebe velocidade pra cima
 }
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
 void timer(int v) {
     glutTimerFunc(1000.0 / frameRate, timer, 0); //Controlando o desenho a cada 1000/30 significa que a tela será redesenhada 30 frames por segundo
 
-    player.cair(1.0 / frameRate); //a cada frame, o bird cai sob ação da gravidade
+   // player.cair(1.0 / frameRate); //a cada frame, o bird cai sob ação da gravidade
+
+    player.mover(0.2);
 
     glutPostRedisplay();
 }
@@ -59,7 +61,9 @@ void desenha() {
     player.desenha();
 
     for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
-        flow.flow();
+    
+    
+    flow.flow();
   
     glutSwapBuffers();
 }

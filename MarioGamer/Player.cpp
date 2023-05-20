@@ -7,8 +7,8 @@
 #include "Formas.h"
 
 Player::Player() {
-    posicao = glm::vec2(0.25, 2);
-    cor = glm::vec3(0, 0, 0);
+    posicao = glm::vec2(0.5, 2);
+    cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
     velocidade = 0.2;
 }
@@ -21,6 +21,11 @@ void Player::cair(float tempo) {
     float gravidade = 10;
     velocidade = velocidade + gravidade * tempo;
     posicao[0] = posicao[0] - velocidade * tempo;
+}
+
+void Player::mover(float velocidade) {
+    
+    posicao[0] = posicao[0] + velocidade;
 }
 
 void Player::desenha() {

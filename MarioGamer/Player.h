@@ -13,6 +13,7 @@ public:
     Player();
     void flap();            
     void cair(float tempo); 
+    void mover(float velocidade);
     void desenha();        
 };
 
