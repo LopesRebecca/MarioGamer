@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "Player.h"
+#include "Enemy.h"
 #include "Plataforma.h"
 
 
@@ -19,19 +20,18 @@ bool isColiding = false;
 float move = 0.4;
 
 Player player;
+static Enemy enemy;
 Plataforma flow(0);
-Plataforma pipe1(7);
-Plataforma pipe2(9);
-Plataforma pipe3(11);
+Plataforma pipe(7);
+
 std::vector<Plataforma> pipes;
 
 
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
-    pipes.push_back(pipe1);
-    pipes.push_back(pipe2);
-    pipes.push_back(pipe3);
+    pipes.push_back(pipe);
+
 }
 
 void tecladoEspecial(int tecla, int x, int y) {
@@ -42,16 +42,17 @@ void tecladoEspecial(int tecla, int x, int y) {
 
 void teclado(unsigned char tecla, int x, int y) {
     if (tecla == ' ')
-        player.flap(); //a cada pressionar da tecla, o bird recebe velocidade pra cima
+        player.flap(); //a cada pressionar da tecla, o mario recebe velocidade pra cima
 }
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
 void timer(int v) {
     glutTimerFunc(1000.0 / frameRate, timer, 0); //Controlando o desenho a cada 1000/30 significa que a tela será redesenhada 30 frames por segundo
     
-    player.cair(1.0 / frameRate); //a cada frame, o bird cai sob ação da gravidade   
+    player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
-    
+    enemy.cair(1.0 / frameRate);
+    enemy.mover();
 
     glutPostRedisplay();
 }
@@ -71,6 +72,7 @@ void desenha() {
     glLoadIdentity();
 
     player.desenha();
+    enemy.desenha();
 
     for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
     
