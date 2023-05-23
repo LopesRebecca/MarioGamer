@@ -11,9 +11,7 @@ public:
 	glm::vec3 cor;
 	float largura;
 public:
-	Plataforma(float y);
-	bool isOut();
-	void respawn();
+	Plataforma(float x, float y);
 	void desenha();
 	void flow();
 };

@@ -21,8 +21,13 @@ float move = 0.4;
 
 Player player;
 static Enemy enemy;
-Plataforma flow(0);
-Plataforma pipe(7);
+Plataforma flow(0, 0);
+
+Plataforma pipe1(0,3);
+Plataforma pipe2(3, 2);
+Plataforma pipe3(6,1.2);
+Plataforma pipe4(0, 1.2);
+Plataforma pipe5(4, 3);
 
 std::vector<Plataforma> pipes;
 
@@ -30,14 +35,15 @@ std::vector<Plataforma> pipes;
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
-    pipes.push_back(pipe);
-
+    pipes.push_back(pipe1);
+    pipes.push_back(pipe2); 
+    pipes.push_back(pipe3);
+    pipes.push_back(pipe4);
+    pipes.push_back(pipe5);
 }
 
 void tecladoEspecial(int tecla, int x, int y) {
-    
     player.mover(tecla);
-       
 }
 
 void teclado(unsigned char tecla, int x, int y) {
