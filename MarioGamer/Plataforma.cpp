@@ -15,8 +15,6 @@ Plataforma::Plataforma(float x, float y) {
 }
 
 void Plataforma::desenha() {
-
-    //obstaculo esquerdo
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, 1);
     glScalef(1.2, 0.1, 1);
@@ -32,4 +30,3 @@ void Plataforma::flow() {
     Formas::quadrado();
     glPopMatrix();
 }
-

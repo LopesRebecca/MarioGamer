@@ -2,6 +2,7 @@
 #include <iostream>
 #include <GL/glut.h>
 #include <GL\freeglut.h>
+#include <cstdio>
 
 
 
@@ -30,7 +31,6 @@ Plataforma pipe4(0, 1.2);
 Plataforma pipe5(4, 3);
 
 std::vector<Plataforma> pipes;
-
 
 
 void inicio() {
@@ -63,11 +63,6 @@ void timer(int v) {
     glutPostRedisplay();
 }
 
-void colisao() {
-   
-}
-
-
 void desenha() {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
@@ -79,8 +74,10 @@ void desenha() {
 
     player.desenha();
     enemy.desenha();
+    player.colisao(player, enemy);
+    enemy.desenha();
 
-    for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
+    //for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
     
     flow.flow();
   

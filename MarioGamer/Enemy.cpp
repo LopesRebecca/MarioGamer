@@ -32,8 +32,8 @@ void Enemy::cair(float tempo) {
 
 
 void Enemy::mover() {
-    velocidade = 0.02
-        ;
+    velocidade = 0.02;
+
     if (posicao.x + (direcao * velocidade) + width > 6) { // quando bater na parede do lado direito ele muda a direçao
         direcao *= -1;
     }
@@ -44,17 +44,4 @@ void Enemy::mover() {
     posicao.x += direcao * velocidade; // movendo o inimigo
 
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
-
-}
-
-
-void Enemy::desenha() {
-    glPushMatrix();
-
-    glTranslatef(posicao.x, posicao.y, 0);
-    glScalef(tamanho, tamanho, 1);
-    glColor3f(cor.r, cor.g, cor.b);
-    Formas::circulo(36);
-
-    glPopMatrix();
 }

@@ -58,9 +58,48 @@ void Player::desenha() {
     glTranslatef(posicao.x, posicao.y, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(cor.r, cor.g, cor.b);
-    Formas::circulo(36); 
+    Formas::quadrado(); 
 
     glPopMatrix();
+}
+
+void Player::over() {
+    glPushMatrix();
+
+    glTranslatef(posicao.x, posicao.y, 0);
+    glScalef(tamanho, tamanho, 1);
+    glColor3f(0, 0, 0);
+    Formas::quadrado();
+    velocidade = 0;
+    glPopMatrix();
+}
+
+void Player::colisao(Player player, Enemy enemy) {
+    if (player.posicao.x < enemy.posicao.x + enemy.width &&
+        player.posicao.x + player.width > enemy.posicao.x &&
+        player.posicao.y < enemy.posicao.y + enemy.height &&
+        player.posicao.y + player.height > enemy.posicao.y) {
+        //limpar a janela
+        enemy.velocidade = 0;
+        gameOver(2.0, 2.0, -1.0, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
+        //getc(stdin); para o jogo
+    }
+}
+
+void Player::gameOver(float x, float y, float z, void* font, const char *string) {
+
+        const unsigned char* str = reinterpret_cast<const unsigned char*>(string);
+        glColor3f(0, 0, 0);
+        glRasterPos3f(x, y, z);
+        glutBitmapString(font, str);
+
+        glPushMatrix();
+        glTranslatef(posicao.x, posicao.y, 0);
+        glScalef(tamanho, tamanho, 1);
+        glColor3f(0, 0, 0);
+        Formas::quadrado();
+        velocidade = 0;
+        glPopMatrix();    
 }
 
 

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <glm/glm.hpp>
+#include "Enemy.h"
 
 class Player {
 public:
@@ -18,8 +19,10 @@ public:
     void flap();            
     void cair(float tempo); 
     void mover(int tecla);
-    void desenha();        
+    void desenha();
+    void over();
+    void gameOver(float x, float y, float z, void* font, const char* string);
+    void colisao(Player player, Enemy enemy);
 };
-
 #endif 
 
