@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Plataforma.h"
+#include "GameOver.h"
 
 
 using namespace std;
@@ -23,6 +24,7 @@ float move = 0.4;
 Player player;
 static Enemy enemy;
 Plataforma flow(0, 0);
+GameOver gameOver;
 
 Plataforma pipe1(0,3);
 Plataforma pipe2(3, 2);
@@ -73,11 +75,13 @@ void desenha() {
     glLoadIdentity();
 
     player.desenha();
-    enemy.desenha();
-    player.colisao(player, enemy);
-    enemy.desenha();
-
-    //for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
+    enemy.desenha(0,3);
+    player.colisao(player, enemy, gameOver);
+    enemy.desenha(6, 1.2);
+    
+    for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
+    
+    enemy.colisao(flow);
     
     flow.flow();
   

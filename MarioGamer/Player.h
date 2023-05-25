@@ -2,7 +2,9 @@
 #define PLAYER_H
 
 #include <glm/glm.hpp>
+
 #include "Enemy.h"
+#include "GameOver.h"
 
 class Player {
 public:
@@ -21,8 +23,7 @@ public:
     void mover(int tecla);
     void desenha();
     void over();
-    void gameOver(float x, float y, float z, void* font, const char* string);
-    void colisao(Player player, Enemy enemy);
+    void colisao(Player player, Enemy enemy, GameOver gameOver);
 };
 #endif 
 

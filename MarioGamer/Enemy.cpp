@@ -45,3 +45,13 @@ void Enemy::mover() {
 
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 }
+void Enemy::desenha() {
+    glPushMatrix();
+
+    glTranslatef(posicao.x, posicao.y, 0);
+    glScalef(tamanho, tamanho, 1);
+    glColor3f(cor.r, cor.g, cor.b);
+    Formas::quadrado();
+
+    glPopMatrix();
+}
