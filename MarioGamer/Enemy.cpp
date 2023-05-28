@@ -29,6 +29,7 @@ void Enemy::cair(float tempo) {
         posicao.y = height;
         mover();
     }
+    
 
 }
 
@@ -38,6 +39,7 @@ void Enemy::colisaoPlataforma(Plataforma plataforma) {
         posicao.y < (plataforma.posicao.y + plataforma.height) &&
         posicao.y + height >(plataforma.posicao.y)) {
         posicao.y = plataforma.posicao.y + plataforma.height;
+        mover();
     }
 }
 

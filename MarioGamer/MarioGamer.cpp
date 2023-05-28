@@ -53,6 +53,7 @@ void timer(int v) {
 
     player.colisao(player, enemy, gameOver);
     player.colisaoPlataforma(pipe3);
+    enemy.colisaoPlataforma(pipe3);
 
     glutPostRedisplay();
 }
