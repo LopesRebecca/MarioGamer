@@ -9,7 +9,7 @@
 
 
 Enemy::Enemy() {
-    posicao = glm::vec2(4, 2);
+    posicao = glm::vec2(3, 3.4);
     cor = glm::vec3(0, 1, 0);
     tamanho = 0.2;
     width = 0.2;
@@ -25,9 +25,20 @@ void Enemy::cair(float tempo) {
     velocidade = velocidade + gravidade * tempo;
     posicao.y = posicao.y - velocidade * tempo;
 
-    if (posicao.y < height) // colisao com o chao
+    if (posicao.y < height) {// colisao com o chao
         posicao.y = height;
+        mover();
+    }
 
+}
+
+void Enemy::colisaoPlataforma(Plataforma plataforma) {
+    if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
+        posicao.x + width >(plataforma.posicao.x) &&
+        posicao.y < (plataforma.posicao.y + plataforma.height) &&
+        posicao.y + height >(plataforma.posicao.y)) {
+        posicao.y = plataforma.posicao.y + plataforma.height;
+    }
 }
 
 

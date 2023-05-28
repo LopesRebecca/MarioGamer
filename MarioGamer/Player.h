@@ -17,6 +17,7 @@ public:
     float     velocidade;
     bool direita;
     bool esquerda;
+    int vida;
 public:
     Player();
     void flap();            
@@ -26,6 +27,7 @@ public:
     void over();
     void colisao(Player player, Enemy enemy, GameOver gameOver);
     void colisaoPlataforma(Plataforma plataforma);
+    void colisaoEnemy(Enemy enemy);
 };
 #endif 
 

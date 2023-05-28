@@ -17,6 +17,7 @@ Player::Player() {
     velocidade = 0;
     direita;
     esquerda;
+    vida = 100;
 }
 
 
@@ -78,7 +79,10 @@ void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
         player.posicao.x + player.width > enemy.posicao.x &&
         player.posicao.y < enemy.posicao.y + enemy.height &&
         player.posicao.y + player.height > enemy.posicao.y) {
-        gameOver.gameOver(2.0, 2.0, -1.0, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
+        vida--;
+        if (vida < 0)
+            exit(0);
+        printf("%d", vida);
     }
 }
 
@@ -91,5 +95,7 @@ void Player::colisaoPlataforma(Plataforma plataforma) {
         posicao.y = plataforma.posicao.y + plataforma.height;
     }
 }
+
+
 
 

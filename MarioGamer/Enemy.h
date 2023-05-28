@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include <glm/glm.hpp>
+#include "Plataforma.h"
 
 class Enemy {
 public:
@@ -16,6 +17,7 @@ public:
 public:
     Enemy();
     void cair(float tempo);
+    void colisaoPlataforma(Plataforma plataforma);
     void mover();
     void desenha();
 };
