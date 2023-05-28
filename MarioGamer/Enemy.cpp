@@ -9,7 +9,7 @@
 
 
 Enemy::Enemy() {
-    posicao = glm::vec2(4, 2);
+    posicao = glm::vec2(3, 2);
     cor = glm::vec3(0, 1, 0);
     tamanho = 0.2;
     width = 0.2;
@@ -25,23 +25,31 @@ void Enemy::cair(float tempo) {
     velocidade = velocidade + gravidade * tempo;
     posicao.y = posicao.y - velocidade * tempo;
 
-    if (posicao.y < height) // colisao com o chao
-        posicao.y = height;
+    if (posicao.y < height + 0.4) { // colisao com o chao
+        posicao.y = height + 0.4;
+        mover();
+    }
 
+    
+        
 }
 
 
 void Enemy::mover() {
     velocidade = 0.02;
 
-    if (posicao.x + (direcao * velocidade) + width > 6) { // quando bater na parede do lado direito ele muda a direçao
-        direcao *= -1;
-    }
-    else if (posicao.x + (direcao * velocidade) < 0) { // quando bater na parede do lado esquerdo ele muda a direçao
-        direcao *= -1;
-    }
+    
+        if (posicao.x + (direcao * velocidade) + width > 4) { // quando bater na parede do lado direito ele muda a direçao
+            direcao *= -1;
+        }
+        else if (posicao.x + (direcao * velocidade) < 2) { // quando bater na parede do lado esquerdo ele muda a direçao
+            direcao *= -1;
+        }
 
-    posicao.x += direcao * velocidade; // movendo o inimigo
+        posicao.x += direcao * velocidade; // movendo o inimigo
+    
+
+    
 
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 }

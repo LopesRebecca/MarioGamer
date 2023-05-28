@@ -6,6 +6,7 @@
 #include <GL/glut.h>
 #include <GL\freeglut.h>
 #include <glm/glm.hpp>
+#include "Player.h"
 
 
 Plataforma::Plataforma(float x, float y) {
@@ -31,4 +32,14 @@ void Plataforma::flow() {
     glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
+}
+
+
+bool Plataforma::isColliding() {
+    Player player;
+    if (posicao.y < player.posicao.y) {
+        player.posicao.y = posicao.y + height;
+        return false;
+    }
+    return true;
 }

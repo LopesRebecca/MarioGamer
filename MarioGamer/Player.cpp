@@ -12,7 +12,7 @@ Player::Player() {
     posicao = glm::vec2(0.25, 2);
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
-    width = 2;
+    width = 0.2;
     height = 0.7 ;
     velocidade = 0;
     direita;
@@ -31,14 +31,24 @@ void Player::mover(int tecla) {
         case GLUT_KEY_LEFT:  posicao.x -= 0.1; break; //caso a seta esquerda seja pressionada, a coordenada x do ponto inferior esquerdo é reduzida, deslocando o quadrado pra esquerda
         case GLUT_KEY_RIGHT: posicao.x += 0.1; break; //caso a seta direita seja pressionada, a coordenada x do ponto inferior esquerdo é aumentada, deslocando o quadrado pra direita
     }
+    
+
+
+    if (posicao.x < width) // colisao pra nao sair da tela pela direita
+        posicao.x = width;
+
+    if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
+        posicao.x = 6 - width;
+
+    if (posicao.x + width > 2 ) { // colisao lateral com a plataforma do centro esquerda
+        posicao.x = 2 - width;      
+    }
+   
+
+    
+   
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 
-
-    //if (posicao.x < width) // colisao pra nao sair da tela pela direita
-    //    posicao.x = width;
-
-    //if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
-    //    posicao.x = 6 - width;
 
 }
 
@@ -50,6 +60,7 @@ void Player::cair(float tempo) {
     if (posicao.y < height) // colisao com o chao
         posicao.y = height;
 
+   
 }
 
 
@@ -74,11 +85,8 @@ void Player::over() {
 }
 
 void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
-    if (player.posicao.x < enemy.posicao.x + enemy.width &&
-        player.posicao.x + player.width > enemy.posicao.x &&
-        player.posicao.y < enemy.posicao.y + enemy.height &&
-        player.posicao.y + player.height > enemy.posicao.y) {
-        gameOver.gameOver(2.0, 2.0, -1.0, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
+    if (posicao.y < height + 0.4) { // colisao com a plataforma
+        posicao.y = height + 0.4;
     }
 }
 

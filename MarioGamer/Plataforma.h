@@ -16,6 +16,7 @@ public:
 	Plataforma(float x, float y);
 	void desenha();
 	void flow();
+	bool isColliding();
 };
 
 #endif

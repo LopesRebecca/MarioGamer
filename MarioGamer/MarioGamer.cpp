@@ -26,7 +26,7 @@ static Enemy enemy;
 Plataforma flow(0, 0);
 GameOver gameOver;
 
-Plataforma pipe3(3,2);
+Plataforma pipe3(3,0.7);
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
@@ -49,8 +49,8 @@ void timer(int v) {
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
     enemy.cair(1.0 / frameRate);
-    enemy.mover();
-
+    //enemy.mover();
+    pipe3.isColliding();
     //if (player.colisaoPlataforma(pipe3))
     
 
