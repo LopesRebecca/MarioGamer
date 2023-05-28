@@ -17,7 +17,7 @@ Plataforma::Plataforma(float x, float y) {
 void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, 1);
-    glScalef(1.2, 0.1, 1);
+    glScalef(1, 0.2, 1);
     glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
@@ -25,7 +25,7 @@ void Plataforma::desenha() {
 
 void Plataforma::flow() {
     glPushMatrix();
-    glScalef(6, 0.4, 1);
+    glScalef(6, height, 1);
     glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
