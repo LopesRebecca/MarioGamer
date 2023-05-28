@@ -12,12 +12,13 @@ Player::Player() {
     posicao = glm::vec2(0.25, 2);
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
-    width = 2;
+    width = 0.2;
     height = 0.7 ;
     velocidade = 0;
     direita;
     esquerda;
     vida = 100;
+    pulos = 0;
 }
 
 
@@ -35,11 +36,11 @@ void Player::mover(int tecla) {
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 
 
-    //if (posicao.x < width) // colisao pra nao sair da tela pela direita
-    //    posicao.x = width;
+    if (posicao.x < width) // colisao pra nao sair da tela pela direita
+        posicao.x = width;
 
-    //if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
-    //    posicao.x = 6 - width;
+    if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
+        posicao.x = 6 - width;
 
 }
 
@@ -75,16 +76,27 @@ void Player::over() {
 }
 
 void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
-    if (player.posicao.x < enemy.posicao.x + enemy.width &&
+    if (player.posicao.x < enemy.posicao.x &&
         player.posicao.x + player.width > enemy.posicao.x &&
-        player.posicao.y < enemy.posicao.y + enemy.height &&
-        player.posicao.y + player.height > enemy.posicao.y) {
+        player.posicao.y == enemy.posicao.y ) {
         vida--;
         if (vida < 0)
             exit(0);
-        printf("%d", vida);
+        printf(" %d ", vida);
     }
+
+   
 }
+
+bool Player::verificarColisao(Player player, Enemy enemy) {
+    // Verifica se o jogador está em cima do inimigo
+    if (player.posicao.x + player.width == enemy.posicao.x + enemy.width &&
+        player.posicao.y + player.width > enemy.posicao.y + enemy.height) {
+        return true; // Colisão ocorreu
+    }
+    return false; // Não houve colisão
+}
+
 
 
 void Player::colisaoPlataforma(Plataforma plataforma) {

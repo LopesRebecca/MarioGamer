@@ -55,6 +55,11 @@ void timer(int v) {
     player.colisaoPlataforma(pipe3);
     enemy.colisaoPlataforma(pipe3);
 
+    if (player.verificarColisao(player, enemy)) {
+        enemy.posicao.x = -1;
+        enemy.posicao.y = -1;
+    }
+
     glutPostRedisplay();
 }
 

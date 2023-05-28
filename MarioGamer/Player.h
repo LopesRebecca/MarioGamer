@@ -18,6 +18,7 @@ public:
     bool direita;
     bool esquerda;
     int vida;
+    int pulos;
 public:
     Player();
     void flap();            
@@ -26,6 +27,7 @@ public:
     void desenha();
     void over();
     void colisao(Player player, Enemy enemy, GameOver gameOver);
+    bool verificarColisao(Player player, Enemy enemy);
     void colisaoPlataforma(Plataforma plataforma);
     void colisaoEnemy(Enemy enemy);
 };
