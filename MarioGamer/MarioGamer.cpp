@@ -30,11 +30,7 @@ Plataforma pipe3(3,2);
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
-    pipes.push_back(pipe1);
-    pipes.push_back(pipe2); 
-    pipes.push_back(pipe3);
-    pipes.push_back(pipe4);
-    pipes.push_back(pipe5);
+   
 }
 
 void tecladoEspecial(int tecla, int x, int y) {

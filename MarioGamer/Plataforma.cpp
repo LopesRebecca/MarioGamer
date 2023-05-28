@@ -12,6 +12,8 @@ Plataforma::Plataforma(float x, float y) {
     posicao = glm::vec2(x, y);
     cor = glm::vec3(1,0.46, 0.09);
     largura = 0.25;
+    width = 1.2;
+    height = 0.5;
 }
 
 void Plataforma::desenha() {
