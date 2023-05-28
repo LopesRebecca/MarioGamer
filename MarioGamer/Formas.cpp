@@ -20,11 +20,11 @@ void Formas::circulo(int divisoes) {
     glEnd();
 }
 
-void Formas::quadrado(float x, float y) {
+void Formas::quadrado() {
     glBegin(GL_QUADS);
-    glVertex2f(x, y);
-    glVertex2f(x +1 , y);
-    glVertex2f(x+1, y+1);
-    glVertex2f(x, y + 1);
+    glVertex2f(-1, -1);
+    glVertex2f(1, -1);
+    glVertex2f(1, 1);
+    glVertex2f(-1, 1);
     glEnd();
 }

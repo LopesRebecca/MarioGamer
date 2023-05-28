@@ -12,8 +12,8 @@ Player::Player() {
     posicao = glm::vec2(0.25, 2);
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
-    width = 2;
-    height = 2;
+    width = 0.2;
+    height = 0.6;
     velocidade = 0;
     direita;
     esquerda;
@@ -59,7 +59,7 @@ void Player::desenha() {
     glTranslatef(posicao.x, posicao.y, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(cor.r, cor.g, cor.b);
-    Formas::quadrado(posicao.x, posicao.y);
+    Formas::quadrado(); 
 
     glPopMatrix();
 }
@@ -70,7 +70,7 @@ void Player::over() {
     glTranslatef(posicao.x, posicao.y, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(0, 0, 0);
-    //Formas::quadrado();
+    Formas::quadrado();
     velocidade = 0;
     glPopMatrix();
 }
@@ -79,57 +79,9 @@ void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
     if (player.posicao.x < enemy.posicao.x + enemy.width &&
         player.posicao.x + player.width > enemy.posicao.x &&
         player.posicao.y < enemy.posicao.y + enemy.height &&
-        player.posicao.y + player.height > enemy.posicao.y){
+        player.posicao.y + player.height > enemy.posicao.y) {
         gameOver.gameOver(2.0, 2.0, -1.0, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
-        printf("AAAAAAAAA");
     }
-   /* if (player.posicao.y + player.height > enemy.posicao.y) {
-        enemy.desenha();
-        printf("BBBBBBBBBBBBBBB");
-    }*/
-            
 }
-
-
-bool Player::colisaoPlataforma(Plataforma platform) {
-    if (checkCollision(posicao.x, posicao.y, width, height,
-                platform.posicao.x, platform.posicao.y, platform.width, platform.height)) {
-                posicao.y = platform.posicao.y + platform.height; // Ajusta a posição do jogador na plataforma
-    }
-
-    return true;
-       
-}
-
-//for (const auto& platform : platforms) {
-//    if (checkCollision(playerX, playerY, playerWidth, playerHeight,
-//        platform.x, platform.y, platform.width, platform.height)) {
-//        playerY = platform.y + platform.height; // Ajusta a posição do jogador na plataforma
-//        jumpSpeed = 0.0f; // Reinicia a velocidade de pulo
-//        isJumping = false; // Desativa o pulo
-//        break; // Não precisa verificar as outras plataformas
-//    }
-//}
-
-
-bool Player:: checkCollision(float x1, float y1, float width1, float height1,
-    float x2, float y2, float width2, float height2) {
-    if (x1 + width1 >= x2 && x1 <= x2 + width2 &&
-        y1 + height1 >= y2 && y1 <= y2 + height2) {
-        return true; // Colisão detectada
-    }
-    return false; // Sem colisão
-}
-//
-//void update(int value) {
-//    // Verifica a colisão entre o jogador e o inimigo
-//    if (checkCollision(playerX, playerY, playerWidth, playerHeight,
-//        enemyX, enemyY, enemyWidth, enemyHeight)) {
-//        std::cout << "Colisão detectada!" << std::endl;
-//    }
-//
-//    glutTimerFunc(1000 / 60, update, 0); // Atualiza a cada 1/60 segundos (60 FPS)
-//}
-
 
 

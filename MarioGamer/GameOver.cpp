@@ -17,7 +17,7 @@ void GameOver::gameOver(float x, float y, float z, void* font, const char* strin
     glTranslatef(posicao.x, posicao.y, 0);
     glScalef(6, 4, 1);
     glColor3f(cor.r, cor.b, cor.g); 
-    //Formas::quadrado(2,2);
+    Formas::quadrado();
     glPopMatrix();
 
     const unsigned char* str = reinterpret_cast<const unsigned char*>(string);
