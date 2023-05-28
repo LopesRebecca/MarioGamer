@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <GL/glut.h>
 #include <GL\freeglut.h>
@@ -26,22 +25,10 @@ static Enemy enemy;
 Plataforma flow(0, 0);
 GameOver gameOver;
 
-Plataforma pipe1(0,3);
-Plataforma pipe2(3, 2);
-Plataforma pipe3(6,1.2);
-Plataforma pipe4(0, 1.2);
-Plataforma pipe5(4, 3);
-
-std::vector<Plataforma> pipes;
-
+Plataforma pipe3(1.5,2);
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
-    pipes.push_back(pipe1);
-    pipes.push_back(pipe2); 
-    pipes.push_back(pipe3);
-    pipes.push_back(pipe4);
-    pipes.push_back(pipe5);
 }
 
 void tecladoEspecial(int tecla, int x, int y) {
@@ -62,6 +49,9 @@ void timer(int v) {
     enemy.cair(1.0 / frameRate);
     enemy.mover();
 
+    if (player.colisaoPlataforma(pipe3))
+    
+
     glutPostRedisplay();
 }
 
@@ -74,14 +64,16 @@ void desenha() {
     glMatrixMode(GL_MODELVIEW); 
     glLoadIdentity();
 
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glColor3f(0.0, 0.0, 0.0);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glColor3f(0.0, 0.0, 0.0);
+
     player.desenha();
-    enemy.desenha(0,3);
-    player.colisao(player, enemy, gameOver);
-    enemy.desenha(6, 1.2);
-    
-    for (unsigned int i = 0; i < pipes.size(); i++) pipes[i].desenha();
-    
-    enemy.colisao(flow);
+    enemy.desenha();
+    //enemy.desenha();
+    pipe3.desenha();
+    //enemy.colisao(flow);
     
     flow.flow();
   
@@ -100,6 +92,7 @@ int main(int argc, char** argv) {
     glutDisplayFunc(desenha);
     glutKeyboardFunc(teclado);
     glutSpecialFunc(tecladoEspecial);
+
     glutTimerFunc(1000.0 / 30, timer, 0);
 
     glutMainLoop();

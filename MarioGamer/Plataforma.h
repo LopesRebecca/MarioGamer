@@ -9,7 +9,8 @@ class Plataforma
 public:
 	glm::vec2 posicao;
 	glm::vec3 cor;
-	float largura;
+	float width;
+	float height;
 public:
 	Plataforma(float x, float y);
 	void desenha();

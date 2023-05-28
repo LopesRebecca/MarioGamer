@@ -12,8 +12,8 @@ Enemy::Enemy() {
     posicao = glm::vec2(4, 2);
     cor = glm::vec3(0, 1, 0);
     tamanho = 0.2;
-    width = 0.2;
-    height = 0.6;
+    width = 2;
+    height = 2;
     velocidade = 0;
     direcao = 1+ rand() % 3;
 }
@@ -51,7 +51,7 @@ void Enemy::desenha() {
     glTranslatef(posicao.x, posicao.y, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(cor.r, cor.g, cor.b);
-    Formas::quadrado();
+    Formas::quadrado(posicao.x, posicao.y);
 
     glPopMatrix();
 }

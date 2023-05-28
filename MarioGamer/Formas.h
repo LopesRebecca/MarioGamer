@@ -5,8 +5,8 @@
 class Formas {
 public:
     Formas();
-    static void circulo(int divisoes);
-    static void quadrado();
+    void circulo(int divisoes);
+    static void quadrado(float x, float y);
 };
 
 #endif // FORMAS_H
