@@ -51,8 +51,8 @@ void timer(int v) {
     enemy.cair(1.0 / frameRate);
     enemy.mover();
 
-    //if (player.colisaoPlataforma(pipe3))
-    
+    player.colisao(player, enemy, gameOver);
+    player.colisaoPlataforma(pipe3);
 
     glutPostRedisplay();
 }

@@ -83,3 +83,13 @@ void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
 }
 
 
+void Player::colisaoPlataforma(Plataforma plataforma) {
+    if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
+        posicao.x + width > (plataforma.posicao.x) &&
+        posicao.y < (plataforma.posicao.y + plataforma.height) &&
+        posicao.y + height > (plataforma.posicao.y)){
+        posicao.y = plataforma.posicao.y + plataforma.height;
+    }
+}
+
+

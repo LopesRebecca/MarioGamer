@@ -5,6 +5,7 @@
 
 #include "Enemy.h"
 #include "GameOver.h"
+#include "Plataforma.h"
 
 class Player {
 public:
@@ -24,6 +25,7 @@ public:
     void desenha();
     void over();
     void colisao(Player player, Enemy enemy, GameOver gameOver);
+    void colisaoPlataforma(Plataforma plataforma);
 };
 #endif 
 
