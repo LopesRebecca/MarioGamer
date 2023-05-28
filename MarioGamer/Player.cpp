@@ -13,7 +13,7 @@ Player::Player() {
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
     width = 2;
-    height = 2;
+    height = 0.7 ;
     velocidade = 0;
     direita;
     esquerda;
@@ -34,11 +34,11 @@ void Player::mover(int tecla) {
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 
 
-    if (posicao.x < width) // colisao pra nao sair da tela pela direita
-        posicao.x = width;
+    //if (posicao.x < width) // colisao pra nao sair da tela pela direita
+    //    posicao.x = width;
 
-    if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
-        posicao.x = 6 - width;
+    //if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
+    //    posicao.x = 6 - width;
 
 }
 
@@ -55,12 +55,10 @@ void Player::cair(float tempo) {
 
 void Player::desenha() {
     glPushMatrix();
-
     glTranslatef(posicao.x, posicao.y, 0);
     glScalef(tamanho, tamanho, 1);
     glColor3f(cor.r, cor.g, cor.b);
-    Formas::quadrado(posicao.x, posicao.y);
-
+    Formas::quadrado();
     glPopMatrix();
 }
 

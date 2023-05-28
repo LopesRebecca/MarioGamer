@@ -25,7 +25,7 @@ static Enemy enemy;
 Plataforma flow(0, 0);
 GameOver gameOver;
 
-Plataforma pipe3(1.5,2);
+Plataforma pipe3(3,2);
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
@@ -49,7 +49,7 @@ void timer(int v) {
     enemy.cair(1.0 / frameRate);
     enemy.mover();
 
-    if (player.colisaoPlataforma(pipe3))
+    //if (player.colisaoPlataforma(pipe3))
     
 
     glutPostRedisplay();
@@ -70,8 +70,7 @@ void desenha() {
     glColor3f(0.0, 0.0, 0.0);
 
     player.desenha();
-    enemy.desenha();
-    //enemy.desenha();
+    enemy.desenha(); 
     pipe3.desenha();
     //enemy.colisao(flow);
     
