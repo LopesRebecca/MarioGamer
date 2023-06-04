@@ -12,7 +12,6 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Plataforma.h"
-#include "GameOver.h"
 
 
 using namespace std;
@@ -24,13 +23,11 @@ float move = 0.4;
 Player player;
 static Enemy enemy;
 Plataforma flow(0, 0);
-GameOver gameOver;
 
 Plataforma pipe3(3,2);
 
 void inicio() {
     glClearColor(0.0, 1.0, 1.0, 1.0);
-   
 }
 
 void tecladoEspecial(int tecla, int x, int y) {
@@ -44,14 +41,13 @@ void teclado(unsigned char tecla, int x, int y) {
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
 void timer(int v) {
-    glutTimerFunc(1000.0 / frameRate, timer, 0); //Controlando o desenho a cada 1000/30 significa que a tela será redesenhada 30 frames por segundo
+    glutTimerFunc(1000.0 / frameRate, timer, 0);
     
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
     enemy.cair(1.0 / frameRate);
     //enemy.mover();
 
-    player.colisao(player, enemy, gameOver);
     player.colisaoPlataforma(pipe3);
     enemy.colisaoPlataforma(pipe3);
 

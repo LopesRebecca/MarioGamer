@@ -4,6 +4,7 @@
 #define PLATAFORMA_H
 #include <glm/glm.hpp>
 
+//Maria Rebecca - 495703
 class Plataforma
 {
 public:

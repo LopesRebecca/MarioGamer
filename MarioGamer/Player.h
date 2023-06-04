@@ -4,9 +4,9 @@
 #include <glm/glm.hpp>
 
 #include "Enemy.h"
-#include "GameOver.h"
 #include "Plataforma.h"
 
+//Maria Rebecca - 495703
 class Player {
 public:
     glm::vec2 posicao;
@@ -25,11 +25,9 @@ public:
     void cair(float tempo); 
     void mover(int tecla);
     void desenha();
-    void over();
-    void colisao(Player player, Enemy enemy, GameOver gameOver);
+    void colisao(Player player, Enemy enemy);
     bool verificarColisao(Player player, Enemy enemy);
     void colisaoPlataforma(Plataforma plataforma);
-    void colisaoEnemy(Enemy enemy);
 };
 #endif 
 

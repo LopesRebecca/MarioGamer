@@ -3,6 +3,7 @@
 
 #include "glm/glm.hpp"
 
+//Pedro Henrique - 494569
 class Formas {
 public :
     glm::vec2 posicao;

@@ -9,6 +9,7 @@ Formas::Formas() {
 
 }
 
+//Pedro Henrique - 494569
 void Formas::circulo(int divisoes) {
     glBegin(GL_POLYGON);
     for (int i = 0; i < divisoes; i++) {
@@ -20,6 +21,7 @@ void Formas::circulo(int divisoes) {
     glEnd();
 }
 
+//Maria Rebecca - 495703
 void Formas::quadrado() {
     glBegin(GL_QUADS);
     glVertex2f(-1, -1);

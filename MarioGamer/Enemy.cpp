@@ -6,8 +6,7 @@
 
 #include "Formas.h"
 
-
-
+//Alana Oliveira - 495702
 Enemy::Enemy() {
     posicao = glm::vec2(3, 3.4);
     cor = glm::vec3(0, 1, 0);
@@ -19,7 +18,7 @@ Enemy::Enemy() {
 }
 
 
-
+//Pedro Henrique - 494569
 void Enemy::cair(float tempo) {
     float gravidade = 10;
     velocidade = velocidade + gravidade * tempo;
@@ -32,7 +31,7 @@ void Enemy::cair(float tempo) {
     
 
 }
-
+//Pedro Henrique - 494569
 void Enemy::colisaoPlataforma(Plataforma plataforma) {
     if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
         posicao.x + width >(plataforma.posicao.x) &&
@@ -43,7 +42,7 @@ void Enemy::colisaoPlataforma(Plataforma plataforma) {
     }
 }
 
-
+//Alana Oliveira - 495702
 void Enemy::mover() {
     velocidade = 0.02;
 
@@ -58,6 +57,8 @@ void Enemy::mover() {
 
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 }
+
+//Alana Oliveira - 495702
 void Enemy::desenha() {
     glPushMatrix();
 

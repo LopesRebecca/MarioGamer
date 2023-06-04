@@ -7,7 +7,7 @@
 #include <GL\freeglut.h>
 #include <glm/glm.hpp>
 
-
+//Maria Rebecca - 495703
 Plataforma::Plataforma(float x, float y) {
     posicao = glm::vec2(x, y);
     cor = glm::vec3(1,0.46, 0.09);
@@ -16,6 +16,7 @@ Plataforma::Plataforma(float x, float y) {
     height = 0.5;
 }
 
+//Maria Rebecca - 495703
 void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, 1);
@@ -25,6 +26,7 @@ void Plataforma::desenha() {
     glPopMatrix();
 }
 
+//Maria Rebecca - 495703
 void Plataforma::flow() {
     glPushMatrix();
     glScalef(6, height, 1);

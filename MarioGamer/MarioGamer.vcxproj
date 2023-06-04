@@ -132,7 +132,6 @@
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Formas.cpp" />
-    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="MarioGamer.cpp" />
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -140,7 +139,6 @@
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Formas.h" />
-    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

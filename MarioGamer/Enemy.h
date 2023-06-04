@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include "Plataforma.h"
 
+//Alana Oliveira - 495702
 class Enemy {
 public:
     glm::vec2 posicao;

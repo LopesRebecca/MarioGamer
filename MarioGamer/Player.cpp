@@ -6,7 +6,6 @@
 
 #include "Formas.h"
 #include "Plataforma.h"
-#include "GameOver.h"
 
 Player::Player() {
     posicao = glm::vec2(0.25, 2);
@@ -21,12 +20,12 @@ Player::Player() {
     pulos = 0;
 }
 
-
-
+//Maria Rebecca - 495703
 void Player::flap() {
     velocidade = -4; 
 }
 
+//Maria Rebecca  - 495703
 void Player::mover(int tecla) {
 
     switch (tecla) {                                  //os códigos das teclas especiais são valores inteiros, então podem ser usados no switch
@@ -44,17 +43,20 @@ void Player::mover(int tecla) {
 
 }
 
+//Alana Oliveira - 495702
 void Player::cair(float tempo) {
     float gravidade = 10;
     velocidade = velocidade + gravidade * tempo;
     posicao.y = posicao.y - velocidade * tempo;
 
+ 
+    
     if (posicao.y < height) // colisao com o chao
         posicao.y = height;
 
 }
 
-
+//Pedro Henrique - 494569
 void Player::desenha() {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, 0);
@@ -64,18 +66,9 @@ void Player::desenha() {
     glPopMatrix();
 }
 
-void Player::over() {
-    glPushMatrix();
 
-    glTranslatef(posicao.x, posicao.y, 0);
-    glScalef(tamanho, tamanho, 1);
-    glColor3f(0, 0, 0);
-    Formas::quadrado();
-    velocidade = 0;
-    glPopMatrix();
-}
-
-void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
+//Pedro Henrique - 494569
+void Player::colisao(Player player, Enemy enemy) {
     if (player.posicao.x < enemy.posicao.x &&
         player.posicao.x + player.width > enemy.posicao.x &&
         player.posicao.y == enemy.posicao.y ) {
@@ -88,9 +81,10 @@ void Player::colisao(Player player, Enemy enemy, GameOver gameOver) {
    
 }
 
+//Pedro Henrique - 494569
 bool Player::verificarColisao(Player player, Enemy enemy) {
     // Verifica se o jogador está em cima do inimigo
-    if (player.posicao.x + player.width == enemy.posicao.x + enemy.width &&
+    if (player.posicao.x + player.width == enemy.posicao.x + enemy.width ||
         player.posicao.y + player.width > enemy.posicao.y + enemy.height) {
         return true; // Colisão ocorreu
     }
@@ -98,7 +92,7 @@ bool Player::verificarColisao(Player player, Enemy enemy) {
 }
 
 
-
+//Maria Rebecca - 495703
 void Player::colisaoPlataforma(Plataforma plataforma) {
     if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
         posicao.x + width > (plataforma.posicao.x) &&
