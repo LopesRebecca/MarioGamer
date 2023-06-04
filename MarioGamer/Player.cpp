@@ -84,7 +84,7 @@ void Player::colisao(Player player, Enemy enemy) {
 //Pedro Henrique - 494569
 bool Player::verificarColisao(Player player, Enemy enemy) {
     // Verifica se o jogador está em cima do inimigo
-    if (player.posicao.x + player.width == enemy.posicao.x + enemy.width ||
+    if (player.posicao.x + player.width == enemy.posicao.x + enemy.width &&
         player.posicao.y + player.width > enemy.posicao.y + enemy.height) {
         return true; // Colisão ocorreu
     }

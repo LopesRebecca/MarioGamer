@@ -46,10 +46,10 @@ void timer(int v) {
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
     enemy.cair(1.0 / frameRate);
-    //enemy.mover();
 
     player.colisaoPlataforma(pipe3);
     enemy.colisaoPlataforma(pipe3);
+    player.colisao(player, enemy);
 
     if (player.verificarColisao(player, enemy)) {
         enemy.posicao.x = -1;
