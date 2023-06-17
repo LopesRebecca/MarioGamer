@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="imagens">
+      <UniqueIdentifier>{71d89401-8e33-4d61-bdac-c442a66ccb26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MarioGamer.cpp">
@@ -30,6 +33,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Textura.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -44,5 +50,61 @@
     <ClInclude Include="Enemy.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Textura.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\mario\brickred.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario_death.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario_end.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario_end1.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario_jump.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario_move0.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\mario_move2.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas_0.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas_1.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas_ded.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas1_0.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas1_1.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas1_ded.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas2_0.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas2_1.bmp">
+      <Filter>imagens</Filter>
+    </Image>
+    <Image Include="..\..\mario\goombas2_ded.bmp">
+      <Filter>imagens</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -135,12 +135,33 @@
     <ClCompile Include="MarioGamer.cpp" />
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Textura.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Formas.h" />
     <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Textura.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\mario\brickred.bmp" />
+    <Image Include="..\..\mario\goombas1_0.bmp" />
+    <Image Include="..\..\mario\goombas1_1.bmp" />
+    <Image Include="..\..\mario\goombas1_ded.bmp" />
+    <Image Include="..\..\mario\goombas2_0.bmp" />
+    <Image Include="..\..\mario\goombas2_1.bmp" />
+    <Image Include="..\..\mario\goombas2_ded.bmp" />
+    <Image Include="..\..\mario\goombas_0.bmp" />
+    <Image Include="..\..\mario\goombas_1.bmp" />
+    <Image Include="..\..\mario\goombas_ded.bmp" />
+    <Image Include="..\..\mario\mario.bmp" />
+    <Image Include="..\..\mario\mario_death.bmp" />
+    <Image Include="..\..\mario\mario_end.bmp" />
+    <Image Include="..\..\mario\mario_end1.bmp" />
+    <Image Include="..\..\mario\mario_jump.bmp" />
+    <Image Include="..\..\mario\mario_move0.bmp" />
+    <Image Include="..\..\mario\mario_move2.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
