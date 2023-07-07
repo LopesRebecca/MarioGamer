@@ -20,7 +20,7 @@ Plataforma::Plataforma(float x, float y) {
 void Plataforma::desenha() {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, 1);
-    glScalef(1, 0.2, 1);
+    glScalef(1, 0.2, -4);
     glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();
@@ -28,9 +28,15 @@ void Plataforma::desenha() {
 
 //Maria Rebecca - 495703
 void Plataforma::flow() {
+    //desenhando o chão no plano XZ
     glPushMatrix();
-    glScalef(6, height, 1);
-    glColor3f(cor.r, cor.g, cor.b);
-    Formas::quadrado();
+    glColor3f(0.3, 0.3, 0.3);
+    glScalef(3, 1, 3);
+    glBegin(GL_QUADS);
+    glVertex3f(-1, 0, -1);
+    glVertex3f(1, 0, -1);
+    glVertex3f(1, 0, 1);
+    glVertex3f(-1, 0, 1);
+    glEnd();
     glPopMatrix();
 }
