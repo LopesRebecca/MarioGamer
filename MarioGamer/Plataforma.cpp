@@ -7,6 +7,13 @@
 #include <GL\freeglut.h>
 #include <glm/glm.hpp>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h" 
+
+#define PLATAFORMA_FILE "imagens/brickred.bmp"
+
+unsigned int plataformaImgId;
+
 //Maria Rebecca - 495703
 Plataforma::Plataforma(float x, float y) {
     posicao = glm::vec2(x, y);

@@ -123,7 +123,7 @@ void cenario() {
 }
 
 //Função que desenha cenário usando projeção em perspectiva
-void projecaoPerspectiva() {
+void projecaoPerspectiva(Player player) {
     //definindo o tipo de projeção
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -137,7 +137,7 @@ void projecaoPerspectiva() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glm::mat4 matrizCamera = glm::lookAt(glm::vec3(camPos), //eye = posição da câmera
-        glm::vec3(0, 0, 0),  //at  = para onde a câmera aponta
+        glm::vec3(player.posicao.x, player.posicao.y, 0),  //at  = para onde a câmera aponta
         glm::vec3(0, 1, 0)); //up  = para onde o topo da câmera aponta
     glMultMatrixf(glm::value_ptr(matrizCamera)); //criada a matriz usando GLM, deve-se enviá-la para OpenGL
 
@@ -150,7 +150,7 @@ void projecaoPerspectiva() {
 void desenha() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    // glViewport(larguraJanela / 2, 0, larguraJanela / 2, alturaJanela); //reserva metada direita da janela para ser desenhada
-    projecaoPerspectiva();   //função que desenha cenário usando projeção em perspectiva
+    projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();

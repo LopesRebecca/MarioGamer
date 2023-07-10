@@ -7,6 +7,8 @@
 #include "Formas.h"
 #include "Plataforma.h"
 
+
+
 Player::Player() {
     posicao = glm::vec2(0.25, 2);
     cor = glm::vec3(1, 0, 0);
