@@ -1,4 +1,4 @@
-#include "Textura.h"
+/*#include "Textura.h"
 
 #include <GL/glut.h>
 #include <stdio.h>
@@ -52,4 +52,4 @@ unsigned int carregaTextura(char fileName[]) {
     stbi_image_free(imagem); //memória RAM pode ser liberada pois a imagem foi enviada ao OpenGL (memória gráfica)
 
     return texId; //retornando o identificador da textura (sem ele não há como acessar a textura carregada)
-}
+}*/

@@ -11,13 +11,15 @@
 #include <cmath>
 #include <vector>
 
+#include "fonteluz.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Plataforma.h"
+#include "surface.h"
 
 
 using namespace std;
-
+#define FPS 30
 float frameRate = 30;
 bool isColiding = false;
 float move = 0.4;
@@ -25,15 +27,19 @@ float move = 0.4;
 Player player;
 static Enemy enemy;
 Plataforma flow(0, 0);
+Surface  surface;
+FonteLuz luz;
 
 Plataforma pipe3(3,2);
 
 //variáveis globais relacionadas a dimensões da janela
-int larguraJanela, alturaJanela;
+int larguraJanela;
+int alturaJanela;
 float aspectRatio;
 
+
 //variáveis globais relacionadas a câmera
-glm::vec4 camPos(3, 3, 3, 1);  //posição inicial da câmera
+glm::vec3 camPos = glm::vec3(0, 18, 10);  //posição inicial da câmera
 glm::mat4 camRotacao = glm::rotate(glm::mat4(1), glm::radians(1.0f), glm::vec3(0, 1, 0)); //matriz de rotação para girar a câmera
 bool      gira = true;
 
@@ -60,16 +66,19 @@ void tecladoEspecial(int tecla, int x, int y) {
 void teclado(unsigned char tecla, int x, int y) {
     if (tecla == ' ')
         player.flap(); //a cada pressionar da tecla, o mario recebe velocidade pra cima
+
 }
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
 void timer(int v) {
     glutTimerFunc(1000.0 / frameRate, timer, 0);
     
-    if (gira)
-        camPos = camRotacao * camPos; //a cada frame, a posição da câmera é rotacionada usando a matriz de rotação camRotacao
+    //if (gira)
+        //camPos = camRotacao * camPos; //a cada frame, a posição da câmera é rotacionada usando a matriz de rotação camRotacao
+    glm::mat4 R = glm::rotate(glm::mat4(1.0f), 0.01f, glm::vec3(0, 0, 1)); //matriz de rotação usada para girar a fonte de luz
 
-
+    luz.setLuzPos(glm::vec3(R * glm::vec4(luz.getLuzPos(), 1.0f))); //girando a fonte de luz em torno do eixo Z
+   // surface.move(1.0 / FPS); //alterando a onda da superfície
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
     enemy.cair(1.0 / frameRate);
@@ -127,43 +136,44 @@ void projecaoPerspectiva(Player player) {
     //definindo o tipo de projeção
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glm::mat4 matrizProjecao = glm::frustum(-1, 1,   //left e right (limites na largura do plano de projeção)
-        -1, 1,   //bottom e top (limites na altura do plano de projeção)
-        1, 100); //near e far (limites na profundidade do volume de visualização)
-    glMultMatrixf(glm::value_ptr(matrizProjecao));
-   
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f),               //ângulo de abertura do frustum
+        (float)larguraJanela / alturaJanela, //aspect ratio da tela
+        1.0f,                              //distância near
+        100.0f);                           //distância far
+    glMultMatrixf(glm::value_ptr(projectionMatrix));
 
     //definindo o posicionamento da câmera
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glm::mat4 matrizCamera = glm::lookAt(glm::vec3(camPos), //eye = posição da câmera
-        glm::vec3(player.posicao.x, player.posicao.y, 0),  //at  = para onde a câmera aponta
-        glm::vec3(0, 1, 0)); //up  = para onde o topo da câmera aponta
-    glMultMatrixf(glm::value_ptr(matrizCamera)); //criada a matriz usando GLM, deve-se enviá-la para OpenGL
+    glm::mat4 cameraMatrix = glm::lookAt(camPos,            //posição da câmera
+        glm::vec3(0, 0, 0),  //posição para onde a câmera está direcionada
+        glm::vec3(0, 0, 1)); //direção para onde o topo da câmera aponta
+    glMultMatrixf(glm::value_ptr(cameraMatrix));
 
-    //desenhando cenário (chão e objeto) e eixos
+
+    
+    //desenhando itens da cena
     cenario();
     eixos();
+    surface.desenha(camPos, luz);
+    luz.desenha();
+
 }
 
 
 void desenha() {
+    glViewport(0, 0, larguraJanela, alturaJanela);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    // glViewport(larguraJanela / 2, 0, larguraJanela / 2, alturaJanela); //reserva metada direita da janela para ser desenhada
-    projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
-
+    
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0, 6, 0, 4, -1, 1);
-
-    glMatrixMode(GL_MODELVIEW); 
-    glLoadIdentity();
-    eixos();
+    projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
     
-
+    
     player.desenha();
-    enemy.desenha(); 
-    pipe3.desenha();
+    //enemy.desenha(); 
+    //pipe3.desenha();
     //enemy.colisao(flow);
     
     
@@ -178,7 +188,7 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowPosition(0, 0);
-    glutInitWindowSize(640, 360);
+    glutInitWindowSize(larguraJanela, alturaJanela);
     glutCreateWindow("Mario Game - Computação Grafica");
 
     inicio();
@@ -188,7 +198,7 @@ int main(int argc, char** argv) {
     glutReshapeFunc(alteraJanela);
     glutKeyboardFunc(teclado);
     glutSpecialFunc(tecladoEspecial);
-    glutTimerFunc(1000.0 / 30, timer, 0);
+    glutTimerFunc(1000.0 / FPS, timer, 0);
 
     glutMainLoop();
 

@@ -9,7 +9,7 @@
 //Maria Rebecca - 495703
 class Player {
 public:
-    glm::vec2 posicao;
+    glm::vec3 posicao;
     glm::vec3 cor;
     float tamanho;
     float     width;

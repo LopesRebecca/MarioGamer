@@ -36,6 +36,8 @@ void Plataforma::desenha() {
 //Maria Rebecca - 495703
 void Plataforma::flow() {
     //desenhando o chão no plano XZ
+
+    // aplicar textura no chão
     glPushMatrix();
     glColor3f(0.3, 0.3, 0.3);
     glScalef(3, 1, 3);

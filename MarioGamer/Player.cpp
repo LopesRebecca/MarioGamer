@@ -10,11 +10,11 @@
 
 
 Player::Player() {
-    posicao = glm::vec2(0.25, 2);
+    posicao = glm::vec3(0.25, 2, 8);
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
     width = 0.2;
-    height = 0.7 ;
+    height = 0.2;
     velocidade = 0;
     direita;
     esquerda;
@@ -24,45 +24,57 @@ Player::Player() {
 
 //Maria Rebecca - 495703
 void Player::flap() {
-    velocidade = -4; 
+    
+    velocidade = -4;
 }
 
 //Maria Rebecca  - 495703
 void Player::mover(int tecla) {
 
     switch (tecla) {                                  //os códigos das teclas especiais são valores inteiros, então podem ser usados no switch
-        case GLUT_KEY_LEFT:  posicao.x -= 0.1; break; //caso a seta esquerda seja pressionada, a coordenada x do ponto inferior esquerdo é reduzida, deslocando o quadrado pra esquerda
-        case GLUT_KEY_RIGHT: posicao.x += 0.1; break; //caso a seta direita seja pressionada, a coordenada x do ponto inferior esquerdo é aumentada, deslocando o quadrado pra direita
+        case GLUT_KEY_LEFT:  posicao.x += 0.1;  break; //caso a seta direita seja pressionada, a coordenada x do ponto inferior esquerdo é reduzida, deslocando o quadrado pra esquerda
+        case GLUT_KEY_RIGHT: posicao.x -= 0.1;  break; //caso a seta esquerda seja pressionada, a coordenada x do ponto inferior esquerdo é aumentada, deslocando o quadrado pra direita
+            
+        case GLUT_KEY_UP:  posicao.y -= 0.1; break; //caso a seta cima seja pressionada, a coordenada y do ponto inferior esquerdo é reduzida, deslocando o quadrado pra esquerda
+        case GLUT_KEY_DOWN: posicao.y += 0.1; break; //caso a seta baixo seja pressionada, a coordenada y do ponto inferior esquerdo é aumentada, deslocando o quadrado pra direita
     }
+
+    
+    
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 
 
-    if (posicao.x < width) // colisao pra nao sair da tela pela direita
-        posicao.x = width;
+    if (posicao.x + width < -9.75) // colisao pra nao sair da tela pela direita
+        posicao.x = -9.75;
 
-    if (posicao.x + width > 6) // colisao pra nao sair da tela pela esquerda
-        posicao.x = 6 - width;
+    if (posicao.x + width > 10) // colisao pra nao sair da tela pela esquerda
+        posicao.x = 10 - width;
 
+    if (posicao.y + height > 10)
+        posicao.y = 10 - height;
+
+    if (posicao.y < -9.75)
+        posicao.y = -9.75;
 }
 
 //Alana Oliveira - 495702
 void Player::cair(float tempo) {
     float gravidade = 10;
     velocidade = velocidade + gravidade * tempo;
-    posicao.y = posicao.y - velocidade * tempo;
+    posicao.z = posicao.z - velocidade * tempo;
 
  
+    if (posicao.z <= 0.2)
+        posicao.z = 0.2;
     
-    if (posicao.y < height) // colisao com o chao
-        posicao.y = height;
 
 }
 
 //Pedro Henrique - 494569
 void Player::desenha() {
     glPushMatrix();
-    glTranslatef(posicao.x, posicao.y, 0);
-    glScalef(tamanho, tamanho, 1);
+    glTranslatef(posicao.x, posicao.y, posicao.z);
+    glScalef(tamanho, tamanho, tamanho);
     glColor3f(cor.r, cor.g, cor.b);
     Formas::quadrado();
     glPopMatrix();

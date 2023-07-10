@@ -131,17 +131,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="fonteluz.cpp" />
     <ClCompile Include="Formas.cpp" />
     <ClCompile Include="MarioGamer.cpp" />
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="surface.cpp" />
     <ClCompile Include="Textura.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="fonteluz.h" />
     <ClInclude Include="Formas.h" />
     <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="surface.h" />
     <ClInclude Include="Textura.h" />
   </ItemGroup>
   <ItemGroup>
