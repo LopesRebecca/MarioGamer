@@ -39,7 +39,7 @@ float aspectRatio;
 
 
 //variáveis globais relacionadas a câmera
-glm::vec3 camPos = glm::vec3(0, 18, 10);  //posição inicial da câmera
+glm::vec3 camPos = glm::vec3(1, 6, 4);  //posição inicial da câmera
 glm::mat4 camRotacao = glm::rotate(glm::mat4(1), glm::radians(1.0f), glm::vec3(0, 1, 0)); //matriz de rotação para girar a câmera
 bool      gira = true;
 
@@ -73,8 +73,10 @@ void teclado(unsigned char tecla, int x, int y) {
 void timer(int v) {
     glutTimerFunc(1000.0 / frameRate, timer, 0);
     
-    //if (gira)
-        //camPos = camRotacao * camPos; //a cada frame, a posição da câmera é rotacionada usando a matriz de rotação camRotacao
+    if (player.posicao.y < -3)
+        camPos = glm::vec3(1, -10, 4); //a cada frame, a posição da câmera é rotacionada usando a matriz de rotação camRotacao
+    else if(player.posicao.y > -3)
+        camPos = glm::vec3(1, 6, 4);
     glm::mat4 R = glm::rotate(glm::mat4(1.0f), 0.01f, glm::vec3(0, 0, 1)); //matriz de rotação usada para girar a fonte de luz
 
     luz.setLuzPos(glm::vec3(R * glm::vec4(luz.getLuzPos(), 1.0f))); //girando a fonte de luz em torno do eixo Z
@@ -146,7 +148,7 @@ void projecaoPerspectiva(Player player) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glm::mat4 cameraMatrix = glm::lookAt(camPos,            //posição da câmera
-        glm::vec3(0, 0, 0),  //posição para onde a câmera está direcionada
+        glm::vec3(player.posicao.x, player.posicao.y, player.posicao.z),  //posição para onde a câmera está direcionada
         glm::vec3(0, 0, 1)); //direção para onde o topo da câmera aponta
     glMultMatrixf(glm::value_ptr(cameraMatrix));
 
