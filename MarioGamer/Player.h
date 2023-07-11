@@ -28,6 +28,8 @@ public:
     void colisao(Player player, Enemy enemy);
     bool verificarColisao(Player player, Enemy enemy);
     void colisaoPlataforma(Plataforma plataforma);
+    void cubo(unsigned int texturaId);
+    unsigned int carregaTextura(const char fileName[]);
 };
 #endif 
 

@@ -124,5 +124,8 @@
     <Image Include="..\..\mario\goombas2_ded.bmp">
       <Filter>imagens</Filter>
     </Image>
+    <Image Include="..\..\..\..\Downloads\marioNovo.jpg">
+      <Filter>imagens</Filter>
+    </Image>
   </ItemGroup>
 </Project>

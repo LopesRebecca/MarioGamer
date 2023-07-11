@@ -151,6 +151,7 @@
     <ClInclude Include="Textura.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\marioNovo.jpg" />
     <Image Include="..\..\mario\brickred.bmp" />
     <Image Include="..\..\mario\goombas1_0.bmp" />
     <Image Include="..\..\mario\goombas1_1.bmp" />
