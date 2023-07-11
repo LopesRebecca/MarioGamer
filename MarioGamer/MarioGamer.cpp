@@ -208,7 +208,7 @@ void desenha() {
     projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
     
     luz.configurarIluminacao();
-    player.desenha();
+    player.desenha(texMario);
     //enemy.desenha(); 
     //pipe3.desenha();
     //enemy.colisao(flow);
