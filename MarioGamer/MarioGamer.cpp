@@ -39,7 +39,7 @@ float aspectRatio;
 
 
 //variáveis globais relacionadas a câmera
-glm::vec3 camPos = glm::vec3(1, 6, 4);  //posição inicial da câmera
+glm::vec3 camPos = glm::vec3(1, -10, 4);  //posição inicial da câmera
 glm::mat4 camRotacao = glm::rotate(glm::mat4(1), glm::radians(1.0f), glm::vec3(0, 1, 0)); //matriz de rotação para girar a câmera
 bool      gira = true;
 
@@ -67,26 +67,44 @@ void teclado(unsigned char tecla, int x, int y) {
     if (tecla == ' ')
         player.flap(); //a cada pressionar da tecla, o mario recebe velocidade pra cima
 
+    switch (tecla) {
+        
+    case 'a':
+        luz.setTipoLuz(PONTUAL);
+            printf("Fonte de luz alterada para PONTUAL\n");
+            break;
+    case 's':
+        luz.setTipoLuz(DIRECIONAL);
+            printf("Fonte de luz alterada para DIRECIONAL\n");
+            break;
+    case 'f':
+        // Define o modo de sombreamento para flat
+        glShadeModel(GL_FLAT);
+        break;
+
+    case 'g':
+        // Define o modo de sombreamento para Gouraud (padrão)
+        glShadeModel(GL_SMOOTH);
+        break;
+    }
 }
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
 void timer(int v) {
     glutTimerFunc(1000.0 / frameRate, timer, 0);
     
+    //alternando camera
     if (player.posicao.y < -3)
-        camPos = glm::vec3(1, -10, 4); //a cada frame, a posição da câmera é rotacionada usando a matriz de rotação camRotacao
+        camPos = glm::vec3(1, -10, 4); 
     else if(player.posicao.y > -3)
         camPos = glm::vec3(1, 6, 4);
+
     glm::mat4 R = glm::rotate(glm::mat4(1.0f), 0.01f, glm::vec3(0, 0, 1)); //matriz de rotação usada para girar a fonte de luz
 
     luz.setLuzPos(glm::vec3(R * glm::vec4(luz.getLuzPos(), 1.0f))); //girando a fonte de luz em torno do eixo Z
-   // surface.move(1.0 / FPS); //alterando a onda da superfície
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
-    enemy.cair(1.0 / frameRate);
-
     player.colisaoPlataforma(pipe3);
-    enemy.colisaoPlataforma(pipe3);
     player.colisao(player, enemy);
 
     if (player.verificarColisao(player, enemy)) {
@@ -133,12 +151,11 @@ void cenario() {
     glPopMatrix();
 }
 
-//Função que desenha cenário usando projeção em perspectiva
 void projecaoPerspectiva(Player player) {
     //definindo o tipo de projeção
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f),               //ângulo de abertura do frustum
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), //ângulo de abertura do frustum
         (float)larguraJanela / alturaJanela, //aspect ratio da tela
         1.0f,                              //distância near
         100.0f);                           //distância far
@@ -163,6 +180,8 @@ void projecaoPerspectiva(Player player) {
 }
 
 
+
+
 void desenha() {
     glViewport(0, 0, larguraJanela, alturaJanela);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -172,7 +191,7 @@ void desenha() {
     glLoadIdentity();
     projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
     
-    
+    luz.configurarIluminacao();
     player.desenha();
     //enemy.desenha(); 
     //pipe3.desenha();
@@ -196,7 +215,6 @@ int main(int argc, char** argv) {
     inicio();
 
     glutDisplayFunc(desenha);
-
     glutReshapeFunc(alteraJanela);
     glutKeyboardFunc(teclado);
     glutSpecialFunc(tecladoEspecial);

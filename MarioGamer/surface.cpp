@@ -124,6 +124,13 @@ void Surface::desenha(glm::vec3 camPos, FonteLuz luz) {
     glm::vec3 corIluminada;
     float delta = lado / divisoes;
 
+    // Define o modo de sombreamento para flat
+    //glShadeModel(GL_FLAT);
+
+
+    // Define o modo de sombreamento para Gouraud (padrão)
+    glShadeModel(GL_SMOOTH);
+
     //desenhando uma grade de triângulos
     glBegin(GL_TRIANGLES);
     for (int i = 0; i < divisoes; i++) {

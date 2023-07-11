@@ -10,7 +10,7 @@
 
 
 Player::Player() {
-    posicao = glm::vec3(0.25, 2, 8);
+    posicao = glm::vec3(0.25, 2, 3);
     cor = glm::vec3(1, 0, 0);
     tamanho = 0.2;
     width = 0.2;
@@ -72,6 +72,14 @@ void Player::cair(float tempo) {
 
 //Pedro Henrique - 494569
 void Player::desenha() {
+
+    // Define o modo de sombreamento para flat
+    //glShadeModel(GL_FLAT);
+
+
+    // Define o modo de sombreamento para Gouraud (padrão)
+    glShadeModel(GL_SMOOTH);
+
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, posicao.z);
     glScalef(tamanho, tamanho, tamanho);
