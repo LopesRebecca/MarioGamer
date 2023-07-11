@@ -1,17 +1,19 @@
-/*#include "Textura.h"
+#include "Textura.h"
 
 #include <GL/glut.h>
 #include <stdio.h>
 #include <iostream>
+#include <iostream> 
+#include <string>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h" 
+#include "stbi_image.h"
 
 using namespace std;
 
+Textura::Textura() {}
 
-// função que carrega uma textura.Recebe o nome do arquivo e devolve o código identificador da textura
-unsigned int carregaTextura(char fileName[]) {
+//função que carrega uma textura. Recebe o nome do arquivo e devolve o código identificador da textura
+unsigned int Textura::carregaTextura(const char fileName[]) {
     unsigned int texId;
     int largura, altura, nCanais;
     stbi_set_flip_vertically_on_load(true);
@@ -52,4 +54,4 @@ unsigned int carregaTextura(char fileName[]) {
     stbi_image_free(imagem); //memória RAM pode ser liberada pois a imagem foi enviada ao OpenGL (memória gráfica)
 
     return texId; //retornando o identificador da textura (sem ele não há como acessar a textura carregada)
-}*/
+}

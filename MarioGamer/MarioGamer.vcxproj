@@ -136,6 +136,7 @@
     <ClCompile Include="MarioGamer.cpp" />
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="stbi_image.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="Textura.cpp" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="Formas.h" />
     <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="stbi_image.h" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="Textura.h" />
   </ItemGroup>

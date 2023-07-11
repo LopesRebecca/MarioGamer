@@ -25,46 +25,41 @@ void Formas::circulo(int divisoes) {
 void Formas::quadrado() {
     glBegin(GL_QUADS);
 
-    glColor3f(1.0, 0.0, 0.0); // cor vermelha
-    glVertex3f(-1.0, -1.0, 1.0); // canto inferior esquerdo
-    glVertex3f(1.0, -1.0, 1.0);  // canto inferior direito
-    glVertex3f(1.0, 1.0, 1.0);   // canto superior direito
-    glVertex3f(-1.0, 1.0, 1.0);  // canto superior esquerdo
+    // Lado frontal
+    glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, -1.0, 1.0);
+    glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, 1.0);
+    glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 1.0);
+    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, 1.0);
 
-    // Face traseira
-    glColor3f(0.0, 1.0, 0.0); // cor verde
-    glVertex3f(1.0, -1.0, -1.0); // canto inferior direito
-    glVertex3f(-1.0, -1.0, -1.0);  // canto inferior esquerdo
-    glVertex3f(-1.0, 1.0, -1.0);   // canto superior esquerdo
-    glVertex3f(1.0, 1.0, -1.0);  // canto superior direito
+    // Lado traseiro
+    glTexCoord2f(1.0, 0.0); glVertex3f(-1.0, -1.0, -1.0);
+    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, 1.0, -1.0);
+    glTexCoord2f(0.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
+    glTexCoord2f(0.0, 0.0); glVertex3f(1.0, -1.0, -1.0);
 
-    // Face superior
-    glColor3f(0.0, 0.0, 1.0); // cor azul
-    glVertex3f(-1.0, 1.0, 1.0); // canto superior esquerdo
-    glVertex3f(1.0, 1.0, 1.0);  // canto superior direito
-    glVertex3f(1.0, 1.0, -1.0);   // canto inferior direito
-    glVertex3f(-1.0, 1.0, -1.0);  // canto inferior esquerdo
+    // Lado superior
+    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, -1.0);
+    glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, 1.0, 1.0);
+    glTexCoord2f(1.0, 0.0); glVertex3f(1.0, 1.0, 1.0);
+    glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
 
-    // Face inferior
-    glColor3f(1.0, 1.0, 0.0); // cor amarela
-    glVertex3f(-1.0, -1.0, -1.0); // canto inferior esquerdo
-    glVertex3f(1.0, -1.0, -1.0);  // canto inferior direito
-    glVertex3f(1.0, -1.0, 1.0);   // canto superior direito
-    glVertex3f(-1.0, -1.0, 1.0);  // canto superior esquerdo
+    // Lado inferior
+    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, -1.0, -1.0);
+    glTexCoord2f(0.0, 1.0); glVertex3f(1.0, -1.0, -1.0);
+    glTexCoord2f(0.0, 0.0); glVertex3f(1.0, -1.0, 1.0);
+    glTexCoord2f(1.0, 0.0); glVertex3f(-1.0, -1.0, 1.0);
 
-    // Face lateral esquerda
-    glColor3f(1.0, 0.0, 1.0); // cor magenta
-    glVertex3f(-1.0, -1.0, -1.0); // canto inferior esquerdo
-    glVertex3f(-1.0, -1.0, 1.0);  // canto inferior direito
-    glVertex3f(-1.0, 1.0, 1.0);   // canto superior direito
-    glVertex3f(-1.0, 1.0, -1.0);  // canto superior esquerdo
+    // Lado direito
+    glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, -1.0);
+    glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
+    glTexCoord2f(0.0, 1.0); glVertex3f(1.0, 1.0, 1.0);
+    glTexCoord2f(0.0, 0.0); glVertex3f(1.0, -1.0, 1.0);
 
-    // Face lateral direita
-    glColor3f(0.0, 1.0, 1.0); // cor ciano
-    glVertex3f(1.0, -1.0, 1.0); // canto inferior esquerdo
-    glVertex3f(1.0, -1.0, -1.0);  // canto inferior direito
-    glVertex3f(1.0, 1.0, -1.0);   // canto superior direito
-    glVertex3f(1.0, 1.0, 1.0);  // canto superior esquerdo 
+    // Lado esquerdo
+    glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, -1.0, -1.0);
+    glTexCoord2f(1.0, 0.0); glVertex3f(-1.0, -1.0, 1.0);
+    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, 1.0, 1.0);
+    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, -1.0);
     
     glEnd();
 }

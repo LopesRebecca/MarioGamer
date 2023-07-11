@@ -6,8 +6,7 @@
 
 #include "Formas.h"
 #include "Plataforma.h"
-
-
+#include "Textura.h"
 
 Player::Player() {
     posicao = glm::vec3(0.25, 2, 3);
@@ -71,19 +70,12 @@ void Player::cair(float tempo) {
 }
 
 //Pedro Henrique - 494569
-void Player::desenha() {
-
-    // Define o modo de sombreamento para flat
-    //glShadeModel(GL_FLAT);
-
-
-    // Define o modo de sombreamento para Gouraud (padrão)
-    glShadeModel(GL_SMOOTH);
-
+void Player::desenha(unsigned int texturaId) {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, posicao.z);
     glScalef(tamanho, tamanho, tamanho);
     glColor3f(cor.r, cor.g, cor.b);
+    glBindTexture(GL_TEXTURE_2D, texturaId);
     Formas::quadrado();
     glPopMatrix();
 }

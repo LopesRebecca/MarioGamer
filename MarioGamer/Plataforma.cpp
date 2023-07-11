@@ -7,10 +7,6 @@
 #include <GL\freeglut.h>
 #include <glm/glm.hpp>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h" 
-
-#define PLATAFORMA_FILE "imagens/brickred.bmp"
 
 unsigned int plataformaImgId;
 
@@ -24,11 +20,12 @@ Plataforma::Plataforma(float x, float y) {
 }
 
 //Maria Rebecca - 495703
-void Plataforma::desenha() {
+void Plataforma::desenha(unsigned int texturaId) {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, 1);
     glScalef(1, 0.2, -4);
     glColor3f(cor.r, cor.g, cor.b);
+    glBindTexture(GL_TEXTURE_2D, texturaId);
     Formas::quadrado();
     glPopMatrix();
 }
