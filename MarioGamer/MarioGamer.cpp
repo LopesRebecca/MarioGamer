@@ -22,7 +22,7 @@
 using namespace std;
 
 #define FPS 30
-#define TEX_MARIO "imagens/mario.bmp"
+#define TEX_MARIO "texturas/mario.jpg"
 #define TEX_PLATAFORMA "texturas/bloco.jpg"
 #define TEX_INIMIGO "texturas/brickred.bmp"
 
@@ -62,8 +62,8 @@ void inicio() {
     glEnable(GL_DEPTH_TEST);          //habilitando a remoção de faces que estejam atrás de outras (ocultas)
     //glEnable(GL_MULTISAMPLE);         //habilita um tipo de antialiasing (melhora serrilhado)
 
-    texMario = textura.carregaTextura(TEX_MARIO); 
-    texPlataforma = textura.carregaTextura(TEX_PLATAFORMA);
+    texMario = player.carregaTextura(TEX_MARIO); 
+    texPlataforma = player.carregaTextura(TEX_PLATAFORMA);
 }
 
 
