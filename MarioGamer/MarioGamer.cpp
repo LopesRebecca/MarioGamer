@@ -16,10 +16,17 @@
 #include "Enemy.h"
 #include "Plataforma.h"
 #include "surface.h"
+#include "Textura.h"
 
 
 using namespace std;
+
 #define FPS 30
+#define TEX_MARIO "texturas/mario.jpg"
+#define TEX_PLATAFORMA "texturas/bloco.jpg"
+#define TEX_INIMIGO "texturas/brickred.bmp"
+
+
 float frameRate = 30;
 bool isColiding = false;
 float move = 0.4;
@@ -29,6 +36,7 @@ static Enemy enemy;
 Plataforma flow(0, 0);
 Surface  surface;
 FonteLuz luz;
+Textura textura;
 
 Plataforma pipe3(3,2);
 
@@ -36,6 +44,11 @@ Plataforma pipe3(3,2);
 int larguraJanela;
 int alturaJanela;
 float aspectRatio;
+
+//variaveis globais textura
+unsigned int texMario;
+unsigned int texPlataforma;
+unsigned int texInimigo;
 
 
 //variáveis globais relacionadas a câmera
@@ -48,6 +61,9 @@ void inicio() {
     glClearColor(0.0, 0.0, 0.0, 1.0); //cor de fundo (preto)
     glEnable(GL_DEPTH_TEST);          //habilitando a remoção de faces que estejam atrás de outras (ocultas)
     //glEnable(GL_MULTISAMPLE);         //habilita um tipo de antialiasing (melhora serrilhado)
+
+    texMario = textura.carregaTextura(TEX_MARIO); 
+    texPlataforma = textura.carregaTextura(TEX_PLATAFORMA);
 }
 
 
