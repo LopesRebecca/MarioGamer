@@ -7,7 +7,7 @@
 //Alana Oliveira - 495702
 class Enemy {
 public:
-    glm::vec2 posicao;
+    glm::vec3 posicao;
     glm::vec3 cor;
     float tamanho;
     float     width;
@@ -19,8 +19,9 @@ public:
     Enemy(float x, float y, float z);
     void cair(float tempo);
     void colisaoPlataforma(Plataforma plataforma);
-    void mover();
-    void desenha();
+    void mover(Plataforma plataforma);
+    void desenha(unsigned int texturaId);
+    void moverChao();
 };
 
 #endif 

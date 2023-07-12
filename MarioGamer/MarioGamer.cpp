@@ -31,7 +31,10 @@ bool isColiding = false;
 float move = 0.4;
 
 Player player;
-Enemy enemy(3, 1, 1);
+Enemy enemy1(3, 1, 3.25);
+Enemy enemy2(0, 1, 3.25);
+Enemy enemy3(0.25, 2, 0.5);
+
 Plataforma flow(0, 0, 0);
 Surface  surface;
 FonteLuz luz;
@@ -121,13 +124,19 @@ void timer(int v) {
     luz.setLuzPos(glm::vec3(R * glm::vec4(luz.getLuzPos(), 1.0f))); //girando a fonte de luz em torno do eixo Z
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
-    //player.colisaoPlataforma(pipe3);
-    player.colisao(player, enemy);
+    player.colisaoPlataforma(pipe1);
+    player.colisaoPlataforma(pipe2);
+    player.colisao(player, enemy1);
+    
+    enemy1.mover(pipe1);
+    enemy2.mover(pipe2);
+    enemy3.cair(1.0/frameRate);
 
-    if (player.verificarColisao(player, enemy)) {
+    /*if (player.verificarColisao(player, enemy)) {
         enemy.posicao.x = -1;
         enemy.posicao.y = -1;
-    }
+    }*/
+
 
     glutPostRedisplay();
 }
@@ -153,10 +162,11 @@ void eixos() {
 }
 
 void cenario() {
-    pipe1.desenha();
-    pipe2.desenha();
-    enemy.desenha();
-    //pipe3.desenha(texPlataforma);
+    pipe1.desenha(texPlataforma);
+    pipe2.desenha(texPlataforma);
+    enemy1.desenha(texInimigo);
+    enemy2.desenha(texInimigo);
+    enemy3.desenha(texInimigo);
 }
 
 void projecaoPerspectiva(Player player) {
@@ -200,9 +210,7 @@ void desenha() {
     projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
     
     luz.configurarIluminacao();
-    //player.desenha(texMario);
-    //enemy.desenha(); 
-    //pipe3.desenha();
+    player.desenha(texMario);
     //enemy.colisao(flow);
     
     
