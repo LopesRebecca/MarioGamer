@@ -6,19 +6,16 @@
 
 #include "Formas.h"
 
-//Alana Oliveira - 495702
-Enemy::Enemy() {
-    posicao = glm::vec2(3, 3.4);
+Enemy::Enemy(float x, float y, float z) {
+    posicao = glm::vec3(x, y, z);
     cor = glm::vec3(0, 1, 0);
-    tamanho = 0.2;
+    tamanho = 0.5;
     width = 0.2;
     height = 0.7;
     velocidade = 0;
     direcao = 1+ rand() % 3;
 }
 
-
-//Pedro Henrique - 494569
 void Enemy::cair(float tempo) {
     float gravidade = 10;
     velocidade = velocidade + gravidade * tempo;
@@ -31,7 +28,7 @@ void Enemy::cair(float tempo) {
     
 
 }
-//Pedro Henrique - 494569
+
 void Enemy::colisaoPlataforma(Plataforma plataforma) {
     if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
         posicao.x + width >(plataforma.posicao.x) &&
@@ -42,7 +39,6 @@ void Enemy::colisaoPlataforma(Plataforma plataforma) {
     }
 }
 
-//Alana Oliveira - 495702
 void Enemy::mover() {
     velocidade = 0.02;
 
@@ -58,13 +54,12 @@ void Enemy::mover() {
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
 }
 
-//Alana Oliveira - 495702
 void Enemy::desenha() {
     glPushMatrix();
-
-    glTranslatef(posicao.x, posicao.y, 0);
-    glScalef(tamanho, tamanho, 1);
+    glTranslatef(posicao.x, posicao.y, 3);
+    glScalef(tamanho, tamanho, tamanho);
     glColor3f(cor.r, cor.g, cor.b);
+    //glBindTexture(GL_TEXTURE_2D, texturaId);
     Formas::quadrado();
 
     glPopMatrix();

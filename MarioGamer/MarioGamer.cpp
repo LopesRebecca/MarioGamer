@@ -24,21 +24,21 @@ using namespace std;
 #define FPS 30
 #define TEX_MARIO "texturas/mario.jpg"
 #define TEX_PLATAFORMA "texturas/bloco.jpg"
-#define TEX_INIMIGO "texturas/brickred.bmp"
-
+#define TEX_INIMIGO "texturas/inimigo2.jpg"
 
 float frameRate = 30;
 bool isColiding = false;
 float move = 0.4;
 
 Player player;
-static Enemy enemy;
-Plataforma flow(0, 0);
+Enemy enemy(3, 1, 1);
+Plataforma flow(0, 0, 0);
 Surface  surface;
 FonteLuz luz;
 Textura textura;
 
-Plataforma pipe3(3,2);
+Plataforma pipe1(3, 1, 1);
+Plataforma pipe2(0, 1, 1);
 
 //variáveis globais relacionadas a dimensões da janela
 int larguraJanela;
@@ -52,7 +52,7 @@ unsigned int texInimigo;
 
 
 //variáveis globais relacionadas a câmera
-glm::vec3 camPos = glm::vec3(1, -10, 4);  //posição inicial da câmera
+glm::vec3 camPos = glm::vec3(1, -10, 50);  //posição inicial da câmera
 glm::mat4 camRotacao = glm::rotate(glm::mat4(1), glm::radians(1.0f), glm::vec3(0, 1, 0)); //matriz de rotação para girar a câmera
 bool      gira = true;
 
@@ -64,6 +64,7 @@ void inicio() {
 
     texMario = player.carregaTextura(TEX_MARIO); 
     texPlataforma = player.carregaTextura(TEX_PLATAFORMA);
+    texInimigo = player.carregaTextura(TEX_INIMIGO);
 }
 
 
@@ -120,7 +121,7 @@ void timer(int v) {
     luz.setLuzPos(glm::vec3(R * glm::vec4(luz.getLuzPos(), 1.0f))); //girando a fonte de luz em torno do eixo Z
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
 
-    player.colisaoPlataforma(pipe3);
+    //player.colisaoPlataforma(pipe3);
     player.colisao(player, enemy);
 
     if (player.verificarColisao(player, enemy)) {
@@ -152,19 +153,10 @@ void eixos() {
 }
 
 void cenario() {
-   
-
-    //desenhando o chão no plano XZ
-    glPushMatrix();
-    glColor3f(0.3, 0.3, 0.3);
-    glScalef(3, 1, 3);
-    glBegin(GL_QUADS);
-    glVertex3f(-1, 0, -1);
-    glVertex3f(1, 0, -1);
-    glVertex3f(1, 0, 1);
-    glVertex3f(-1, 0, 1);
-    glEnd();
-    glPopMatrix();
+    pipe1.desenha();
+    pipe2.desenha();
+    enemy.desenha();
+    //pipe3.desenha(texPlataforma);
 }
 
 void projecaoPerspectiva(Player player) {
@@ -181,8 +173,8 @@ void projecaoPerspectiva(Player player) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glm::mat4 cameraMatrix = glm::lookAt(camPos,            //posição da câmera
-        glm::vec3(player.posicao.x, player.posicao.y, player.posicao.z),  //posição para onde a câmera está direcionada
-        glm::vec3(0, 0, 1)); //direção para onde o topo da câmera aponta
+        glm::vec3(player.posicao.x, player.posicao.y, 2),  //ponto para onde a câmera está olhando
+        glm::vec3(0, 0, 2)); //direção para onde o topo da câmera aponta
     glMultMatrixf(glm::value_ptr(cameraMatrix));
 
 
@@ -208,7 +200,7 @@ void desenha() {
     projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
     
     luz.configurarIluminacao();
-    player.desenha(texMario);
+    //player.desenha(texMario);
     //enemy.desenha(); 
     //pipe3.desenha();
     //enemy.colisao(flow);

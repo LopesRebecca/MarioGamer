@@ -14,8 +14,8 @@ public:
 	float width;
 	float height;
 public:
-	Plataforma(float x, float y);
-	void desenha(unsigned int texturaId);
+	Plataforma(float x, float y, float z);
+	void desenha();
 	void flow();
 };
 

@@ -11,8 +11,8 @@
 unsigned int plataformaImgId;
 
 //Maria Rebecca - 495703
-Plataforma::Plataforma(float x, float y) {
-    posicao = glm::vec2(x, y);
+Plataforma::Plataforma(float x, float y, float z) {
+    posicao = glm::vec3(x, y, z);
     cor = glm::vec3(1,0.46, 0.09);
     largura = 0.25;
     width = 1.2;
@@ -20,12 +20,12 @@ Plataforma::Plataforma(float x, float y) {
 }
 
 //Maria Rebecca - 495703
-void Plataforma::desenha(unsigned int texturaId) {
+void Plataforma::desenha() {
     glPushMatrix();
-    glTranslatef(posicao.x, posicao.y, 1);
-    glScalef(1, 0.2, -4);
+    glTranslatef(posicao.x, posicao.y, 3);
+    glScalef(1, 0.2, -0.1);
     glColor3f(cor.r, cor.g, cor.b);
-    glBindTexture(GL_TEXTURE_2D, texturaId);
+    //glBindTexture(GL_TEXTURE_2D, texturaId);
     Formas::quadrado();
     glPopMatrix();
 }
