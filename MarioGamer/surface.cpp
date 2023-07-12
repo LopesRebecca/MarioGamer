@@ -124,13 +124,6 @@ void Surface::desenha(glm::vec3 camPos, FonteLuz luz) {
     glm::vec3 corIluminada;
     float delta = lado / divisoes;
 
-    // Define o modo de sombreamento para flat
-    //glShadeModel(GL_FLAT);
-
-
-    // Define o modo de sombreamento para Gouraud (padrão)
-    glShadeModel(GL_SMOOTH);
-
     //desenhando uma grade de triângulos
     glBegin(GL_TRIANGLES);
     for (int i = 0; i < divisoes; i++) {
@@ -152,23 +145,73 @@ void Surface::desenha(glm::vec3 camPos, FonteLuz luz) {
             P4.y = -lado / 2 + (j + 1) * delta;
             P4.z = alturaSurface(P4.x, P4.y);
 
-            //Triângulo 1 formado pelos pontos P1, P2 e P3
-            PC = (1.0f / 3.0f) * (P1 + P2 + P3);  //calculando o ponto central do triângulo
-            n = normalTriangle(P1, P2, P3); //calculando o vetor normal do triângulo
-            corIluminada = luz.iluminacao(PC, camPos, matAmb, matDiff, matSpec, matShine, n); //calculando a iluminação da superficie no centro do triângulo
-            glColor3f(corIluminada.r, corIluminada.g, corIluminada.b); //aplicando a cor calculada para a face inteira (sombreamento flat)
-            glVertex3f(P1.x, P1.y, P1.z);
-            glVertex3f(P2.x, P2.y, P2.z);
-            glVertex3f(P3.x, P3.y, P3.z);
 
-            //Triângulo 2 formado pelos pontos P1, P3 e P4 (repete todo o processo anterior)
-            PC = (1.0f / 3.0f) * (P1 + P3 + P4);
-            n = normalTriangle(P1, P3, P4);
-            corIluminada = luz.iluminacao(PC, camPos, matAmb, matDiff, matSpec, matShine, n);
-            glColor3f(corIluminada.r, corIluminada.g, corIluminada.b);
-            glVertex3f(P1.x, P1.y, P1.z);
-            glVertex3f(P3.x, P3.y, P3.z);
-            glVertex3f(P4.x, P4.y, P4.z);
+            if (luz.sombreamento) {
+                //Triângulo 1 formado pelos pontos P1, P2 e P3
+                PC = (1.0f / 3.0f) * (P1 + P2 + P3);  //calculando o ponto central do triângulo
+                n = normalTriangle(P1, P2, P3); //calculando o vetor normal do triângulo
+
+
+                corIluminada = luz.iluminacao(PC, camPos, matAmb, matDiff, matSpec, matShine, n); //calculando a iluminação da superficie no centro do triângulo
+                glColor3f(corIluminada.r, corIluminada.g, corIluminada.b); //aplicando a cor calculada para a face inteira (sombreamento flat)
+                glVertex3f(P1.x, P1.y, P1.z);
+                glVertex3f(P2.x, P2.y, P2.z);
+                glVertex3f(P3.x, P3.y, P3.z);
+
+                PC = (1.0f / 3.0f) * (P1 + P3 + P4);
+                n = normalTriangle(P1, P3, P4);
+                corIluminada = luz.iluminacao(PC, camPos, matAmb, matDiff, matSpec, matShine, n);
+                glColor3f(corIluminada.r, corIluminada.g, corIluminada.b);
+                glVertex3f(P1.x, P1.y, P1.z);
+                glVertex3f(P3.x, P3.y, P3.z);
+                glVertex3f(P4.x, P4.y, P4.z);
+            }
+
+            else {
+                //Triângulo 1 formado pelos pontos P1, P2 e P3
+                PC = (1.0f / 3.0f) * (P1 + P2 + P3);  //calculando o ponto central do triângulo
+                n = normalTriangle(P1, P2, P3); //calculando o vetor normal do triângulo
+
+                // Calcula a iluminação em cada vértice do triângulo
+                glm::vec3 corP1 = luz.iluminacao(P1, camPos, matAmb, matDiff, matSpec, matShine, n);
+                glm::vec3 corP3 = luz.iluminacao(P3, camPos, matAmb, matDiff, matSpec, matShine, n);
+                glm::vec3 corP4 = luz.iluminacao(P4, camPos, matAmb, matDiff, matSpec, matShine, n);
+
+                // Aplica o sombreamento Gouraud
+                glBegin(GL_TRIANGLES);
+                glColor3f(corP1.r, corP1.g, corP1.b);
+                glVertex3f(P1.x, P1.y, P1.z);
+                glColor3f(corP3.r, corP3.g, corP3.b);
+                glVertex3f(P3.x, P3.y, P3.z);
+                glColor3f(corP4.r, corP4.g, corP4.b);
+                glVertex3f(P4.x, P4.y, P4.z);
+                glEnd();
+
+
+
+
+                // Triângulo 2 formado pelos pontos P1, P3 e P4 (repete todo o processo anterior)
+                PC = (1.0f / 3.0f) * (P1 + P3 + P4);
+                n = normalTriangle(P1, P3, P4);
+
+                // Calcula a iluminação em cada vértice do triângulo
+                glm::vec3 corP5 = luz.iluminacao(P1, camPos, matAmb, matDiff, matSpec, matShine, n);
+                glm::vec3 corP6 = luz.iluminacao(P3, camPos, matAmb, matDiff, matSpec, matShine, n);
+                glm::vec3 corP7 = luz.iluminacao(P4, camPos, matAmb, matDiff, matSpec, matShine, n);
+
+                // Aplica o sombreamento Gouraud
+                glBegin(GL_TRIANGLES);
+                glColor3f(corP5.r, corP5.g, corP5.b);
+                glVertex3f(P1.x, P1.y, P1.z);
+                glColor3f(corP6.r, corP6.g, corP6.b);
+                glVertex3f(P3.x, P3.y, P3.z);
+                glColor3f(corP7.r, corP7.g, corP7.b);
+                glVertex3f(P4.x, P4.y, P4.z);
+                glEnd();
+            }
+
+
+            
         }
     }
     glEnd();

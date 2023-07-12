@@ -21,10 +21,7 @@ void Enemy::cair(float tempo) {
     velocidade = velocidade + gravidade * tempo;
     posicao.y = posicao.y - velocidade * tempo;
 
-    if (posicao.y < height) {// colisao com o chao
-        posicao.y = height;
-        mover();
-    }
+    moverChao();
     
 
 }
@@ -49,6 +46,23 @@ void Enemy::mover() {
         direcao *= -1;
     }
 
+    posicao.x += direcao * velocidade; // movendo o inimigo
+
+    glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
+}
+
+
+void Enemy::moverChao() {
+    velocidade = 0.02;
+
+    if (posicao.x + (direcao * velocidade) + width > 10) { // quando bater na parede do lado direito ele muda a direçao
+        direcao *= -1;
+    }
+    else if (posicao.x + (direcao * velocidade) < -9.75) { // quando bater na parede do lado esquerdo ele muda a direçao
+        direcao *= -1;
+    }
+
+ 
     posicao.x += direcao * velocidade; // movendo o inimigo
 
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado

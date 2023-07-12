@@ -21,6 +21,7 @@ public:
     void colisaoPlataforma(Plataforma plataforma);
     void mover();
     void desenha();
+    void moverChao();
 };
 
 #endif 

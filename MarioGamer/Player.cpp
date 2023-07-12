@@ -74,7 +74,7 @@ void Player::cair(float tempo) {
 }
 
 //Pedro Henrique - 494569
-void Player::desenha(unsigned int texturaId) {
+void Player::desenha(unsigned char texturaId) {
     glPushMatrix();
     glTranslatef(posicao.x, posicao.y, posicao.z);
     glScalef(tamanho, tamanho, tamanho);

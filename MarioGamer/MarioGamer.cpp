@@ -86,23 +86,13 @@ void teclado(unsigned char tecla, int x, int y) {
 
     switch (tecla) {
         
-    case 'a':
-        luz.setTipoLuz(PONTUAL);
-            printf("Fonte de luz alterada para PONTUAL\n");
-            break;
-    case 's':
-        luz.setTipoLuz(DIRECIONAL);
-            printf("Fonte de luz alterada para DIRECIONAL\n");
-            break;
     case 'f':
-        // Define o modo de sombreamento para flat
-        glShadeModel(GL_FLAT);
-        break;
-
+        luz.sombreamento = true;
+            break;
     case 'g':
-        // Define o modo de sombreamento para Gouraud (padrão)
-        glShadeModel(GL_SMOOTH);
-        break;
+        luz.sombreamento = false;
+            break;
+   
     }
 }
 
@@ -120,7 +110,7 @@ void timer(int v) {
 
     luz.setLuzPos(glm::vec3(R * glm::vec4(luz.getLuzPos(), 1.0f))); //girando a fonte de luz em torno do eixo Z
     player.cair(1.0 / frameRate); //a cada frame, o mario cai sob ação da gravidade   
-
+    enemy.mover();
     //player.colisaoPlataforma(pipe3);
     player.colisao(player, enemy);
 
@@ -156,6 +146,7 @@ void cenario() {
     pipe1.desenha();
     pipe2.desenha();
     enemy.desenha();
+    //player.desenha(TEX_MARIO);
     //pipe3.desenha(texPlataforma);
 }
 

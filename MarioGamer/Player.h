@@ -24,7 +24,7 @@ public:
     void flap();            
     void cair(float tempo); 
     void mover(int tecla);
-    void desenha(unsigned int texturaId);
+    void desenha(unsigned char texturaId);
     void colisao(Player player, Enemy enemy);
     bool verificarColisao(Player player, Enemy enemy);
     void colisaoPlataforma(Plataforma plataforma);

@@ -9,7 +9,7 @@ enum TipoLuz {
 };
 
 class FonteLuz {
-private:
+public:
     glm::vec3 luzPos = glm::vec3(5, 5, 5);
 
     //propriedades de cor da fonte de luz
@@ -17,6 +17,7 @@ private:
     glm::vec3 luzDiff = glm::vec3(1, 1, 1);       //difusa
     glm::vec3 luzSpec = glm::vec3(1, 1, 1);       //especular
     TipoLuz tipoLuz; // Tipo da fonte de luz
+    bool sombreamento;
 
 public:
     //construtor
