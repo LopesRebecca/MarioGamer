@@ -79,8 +79,8 @@ void Player::desenha(unsigned char texturaId) {
     glTranslatef(posicao.x, posicao.y, posicao.z);
     glScalef(tamanho, tamanho, tamanho);
     glColor3f(cor.r, cor.g, cor.b);
-    cubo(texturaId);
-
+    glBindTexture(GL_TEXTURE_2D, texturaId);
+    Formas::quadrado();
     glPopMatrix();
 }
 
@@ -213,16 +213,16 @@ void Player::colisao(Player player, Enemy enemy) {
 }
 
 
-//Maria Rebecca - 495703
 void Player::colisaoPlataforma(Plataforma plataforma) {
     if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
         posicao.x + width > (plataforma.posicao.x) &&
         posicao.y < (plataforma.posicao.y + plataforma.height) &&
-        posicao.y + height > (plataforma.posicao.y)){
-        posicao.y = plataforma.posicao.y + plataforma.height;
+        posicao.y + height > (plataforma.posicao.y) &&
+        posicao.z < (plataforma.posicao.z + 3) &&
+        posicao.z + height >(plataforma.posicao.z)){
+        posicao.z = plataforma.posicao.z;
     }
 }
-
 
 
 
