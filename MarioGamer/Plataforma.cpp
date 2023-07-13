@@ -29,20 +29,3 @@ void Plataforma::desenha(unsigned int texturaId) {
     Formas::quadrado();
     glPopMatrix();
 }
-
-//Maria Rebecca - 495703
-void Plataforma::flow() {
-    //desenhando o chão no plano XZ
-
-    // aplicar textura no chão
-    glPushMatrix();
-    glColor3f(0.3, 0.3, 0.3);
-    glScalef(3, 1, 3);
-    glBegin(GL_QUADS);
-    glVertex3f(-1, 0, -1);
-    glVertex3f(1, 0, -1);
-    glVertex3f(1, 0, 1);
-    glVertex3f(-1, 0, 1);
-    glEnd();
-    glPopMatrix();
-}

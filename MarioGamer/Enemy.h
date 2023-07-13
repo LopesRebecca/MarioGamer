@@ -18,7 +18,6 @@ public:
 public:
     Enemy(float x, float y, float z);
     void cair(float tempo);
-    void colisaoPlataforma(Plataforma plataforma);
     void mover(Plataforma plataforma);
     void desenha(unsigned int texturaId);
     void moverChao();

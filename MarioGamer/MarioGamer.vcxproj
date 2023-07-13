@@ -138,7 +138,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="stbi_image.cpp" />
     <ClCompile Include="surface.cpp" />
-    <ClCompile Include="Textura.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
@@ -148,7 +147,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="stbi_image.h" />
     <ClInclude Include="surface.h" />
-    <ClInclude Include="Textura.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\marioNovo.jpg" />

@@ -16,7 +16,6 @@
 #include "Enemy.h"
 #include "Plataforma.h"
 #include "surface.h"
-#include "Textura.h"
 
 
 using namespace std;
@@ -38,7 +37,6 @@ Enemy enemy3(0.25, 2, 0.5);
 Plataforma flow(0, 0, 0);
 Surface  surface;
 FonteLuz luz;
-Textura textura;
 
 Plataforma pipe1(3, 1, 1);
 Plataforma pipe2(0, 1, 1);
@@ -63,8 +61,9 @@ bool      gira = true;
 void inicio() {
     glClearColor(0.0, 0.0, 0.0, 1.0); //cor de fundo (preto)
     glEnable(GL_DEPTH_TEST);          //habilitando a remoção de faces que estejam atrás de outras (ocultas)
-    //glEnable(GL_MULTISAMPLE);         //habilita um tipo de antialiasing (melhora serrilhado)
 
+
+    //carregar textura
     texMario = player.carregaTextura(TEX_MARIO); 
     texPlataforma = player.carregaTextura(TEX_PLATAFORMA);
     texInimigo = player.carregaTextura(TEX_INIMIGO);
@@ -87,9 +86,10 @@ void teclado(unsigned char tecla, int x, int y) {
     if (tecla == ' ')
         player.flap(); //a cada pressionar da tecla, o mario recebe velocidade pra cima
 
+    //mudança de iluminação
     switch (tecla) {
         
-    case 'f':
+    case 'f': 
         luz.sombreamento = true;
             break;
     case 'g':
@@ -116,17 +116,15 @@ void timer(int v) {
 
     player.colisaoPlataforma(pipe1);
     player.colisaoPlataforma(pipe2);
+
+    //perca de vida
     player.colisao(player, enemy1);
+    player.colisao(player, enemy2);
+    player.colisao(player, enemy3);
     
     enemy1.mover(pipe1);
     enemy2.mover(pipe2);
     enemy3.cair(1.0/frameRate);
-
-    /*if (player.verificarColisao(player, enemy)) {
-        enemy.posicao.x = -1;
-        enemy.posicao.y = -1;
-    }*/
-
 
     glutPostRedisplay();
 }
@@ -178,7 +176,6 @@ void projecaoPerspectiva(Player player) {
     glMultMatrixf(glm::value_ptr(cameraMatrix));
 
 
-    
     //desenhando itens da cena
     cenario();
     eixos();
@@ -193,18 +190,15 @@ void projecaoPerspectiva(Player player) {
 void desenha() {
     glViewport(0, 0, larguraJanela, alturaJanela);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   // glViewport(larguraJanela / 2, 0, larguraJanela / 2, alturaJanela); //reserva metada direita da janela para ser desenhada
-    
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     projecaoPerspectiva(player);   //função que desenha cenário usando projeção em perspectiva
     
     luz.configurarIluminacao();
     player.desenha(texMario);
-    //enemy.colisao(flow);
-    
-    
-  
+
+   
     glutSwapBuffers();
 }
 

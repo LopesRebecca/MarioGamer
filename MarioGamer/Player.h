@@ -15,8 +15,6 @@ public:
     float     width;
     float height;
     float     velocidade;
-    bool direita;
-    bool esquerda;
     int vida;
     int pulos;
 public:
@@ -26,9 +24,7 @@ public:
     void mover(int tecla);
     void desenha(unsigned char texturaId);
     void colisao(Player player, Enemy enemy);
-    bool verificarColisao(Player player, Enemy enemy);
     void colisaoPlataforma(Plataforma plataforma);
-    void cubo(unsigned int texturaId);
     unsigned int carregaTextura(const char fileName[]);
 };
 #endif 

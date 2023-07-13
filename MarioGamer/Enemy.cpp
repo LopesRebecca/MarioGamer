@@ -26,16 +26,6 @@ void Enemy::cair(float tempo) {
 
 }
 
-void Enemy::colisaoPlataforma(Plataforma plataforma) {
-    if (posicao.x < (plataforma.posicao.x + plataforma.width) &&
-        posicao.x + width >(plataforma.posicao.x) &&
-        posicao.y < (plataforma.posicao.y + plataforma.height) &&
-        posicao.y + height >(plataforma.posicao.y)) {
-        posicao.y = plataforma.posicao.y + plataforma.height;
-        //mover();
-    }
-}
-
 void Enemy::mover(Plataforma plataforma) {
     velocidade = 0.02;
 
@@ -66,23 +56,6 @@ void Enemy::moverChao() {
     posicao.x += direcao * velocidade; // movendo o inimigo
 
     glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser atualizado
-}
-
-void Enemy::moverChao() {
-    velocidade = 0.02;
-
-    if (posicao.x + (direcao * velocidade) + width > 10) { // quando bater na parede do lado direito ele muda a direçao
-        direcao *= -1;
-    }
-    else if (posicao.x + (direcao * velocidade) < -9.75) { // quando bater na parede do lado esquerdo ele muda a direçao
-        direcao *= -1;
-    }
-
-
-    posicao.x += direcao * velocidade; // movendo o inimigo
-
-    glutPostRedisplay(); //Instrução que indica pra GLUT que o frame buffer deve ser at
-
 }
 
 void Enemy::desenha(unsigned int texturaId) {
