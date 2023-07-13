@@ -45,13 +45,17 @@ void Enemy::mover(Plataforma plataforma) {
 void Enemy::moverChao() {
     velocidade = 0.02;
 
-    if (posicao.x + (direcao * velocidade) + width > 10) { // quando bater na parede do lado direito ele muda a direçao
+    if (posicao.x + (direcao * velocidade) + width > 9.5) { // quando bater na parede do lado direito ele muda a direçao
         direcao *= -1;
     }
     else if (posicao.x + (direcao * velocidade) < -9.75) { // quando bater na parede do lado esquerdo ele muda a direçao
         direcao *= -1;
     }
 
+    if (posicao.y == -9.5)
+        posicao.y = posicao.y + velocidade * 1.0/30;
+    if (posicao.y == 10)
+        posicao.y--;
  
     posicao.x += direcao * velocidade; // movendo o inimigo
 

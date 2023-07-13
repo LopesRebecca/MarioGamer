@@ -9,7 +9,8 @@
 
 //construtor
 FonteLuz::FonteLuz() {
-    tipoLuz = PONTUAL;
+    tipoLuz = DIRECIONAL;
+    sombreamento = true;
 }
 
 
@@ -96,7 +97,7 @@ void FonteLuz::configurarIluminacao() {
         luzGL = GL_LIGHT0;
         // Configuração para uma fonte de luz pontual
         // Define a posição da luz
-        glLightfv(luzGL, GL_POSITION, glm::value_ptr(glm::vec4(luzPos, 1.0f)));
+        glLightfv(luzGL, GL_POSITION, glm::value_ptr(glm::vec4(luzPos, 2.0f)));
         break;
     case DIRECIONAL:
         luzGL = GL_LIGHT1;

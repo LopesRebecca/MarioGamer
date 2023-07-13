@@ -95,8 +95,12 @@ void teclado(unsigned char tecla, int x, int y) {
     case 'g':
         luz.sombreamento = false;
             break;
-   
+    
+    case 'l':
+        luz.configurarIluminacao();
+        break;
     }
+
 }
 
 //Função indicada pra GLUT que será executada após uma certa quantidade de tempo
@@ -155,6 +159,8 @@ void cenario() {
     enemy1.desenha(texInimigo);
     enemy2.desenha(texInimigo);
     enemy3.desenha(texInimigo);
+    surface.desenha(camPos, luz);
+    luz.desenha();
 }
 
 void projecaoPerspectiva(Player player) {
@@ -179,8 +185,7 @@ void projecaoPerspectiva(Player player) {
     //desenhando itens da cena
     cenario();
     eixos();
-    surface.desenha(camPos, luz);
-    luz.desenha();
+    
 
 }
 
